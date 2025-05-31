@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTC Box League - Info & Rules</title>
+    <style>
+        /* Embed the same CSS here for consistent styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+        }
+        header {
+            background-color: #004d40; /* Dark Teal */
+            color: #ffffff;
+            padding: 25px 0;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 30px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            letter-spacing: 1.5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0;
+            display: flex;
+            justify-content: center;
+            background-color: #00695c; /* Slightly lighter teal */
+            border-radius: 0 0 8px 8px;
+        }
+        nav li {
+            margin: 0 15px;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 20px;
+            display: block;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        nav a:hover, nav a.active {
+            background-color: #00897b; /* Even lighter teal */
+            border-radius: 5px;
+            color: #e0f2f1;
+        }
+        main {
+            padding: 20px 0;
+        }
+        h2 {
+            color: #004d40;
+            font-size: 2.2em;
+            border-bottom: 2px solid #e0f2f1;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        h3 {
+            color: #00695c;
+            font-size: 1.6em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        .info-section {
+            background-color: #f9fdfc;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .info-section h4 {
+            color: #004d40;
+            font-size: 1.4em;
+            margin-top: 0;
+            border-bottom: 1px solid #e0f2f1;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+        .info-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .info-section ul li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        .info-section ul li::before {
+            content: '✅'; /* Checkmark emoji */
+            position: absolute;
+            left: 0;
+            color: #00897b; /* Teal color for checkmark */
+            font-size: 1.1em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #e0f2f1;
+            color: #004d40;
+        }
+        a {
+            color: #00695c;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px solid #e0f2f1;
+            color: #666;
+            font-size: 0.9em;
+        }
+        footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>DTC Box League</h1>
+            <nav>
+                <ul>
+                    <li><a href="current_round_fixtures.html">Current Round Fixtures</a></li>
+                    <li><a href="current_round_standings.html">Current Standings</a></li>
+                    <li><a href="leaderboard.html">Overall Leaderboard</a></li>
+                    <li><a href="previous_rounds.html">Previous Rounds</a></li>
+                    <li><a href="info_rules.html" class="active">Info & Rules</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <h2>Box League - Mixed Singles Matches</h2>
+
+            <p>For all members over 16.</p>
+            <p>Players will be grouped into boxes (typically 4–5 players per group), and each player plays every other player in their box during the round.</p>
+
+            <h3>Round Periods</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Round</th>
+                        <th>Period</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Round 1</td><td>February – March</td></tr>
+                    <tr><td>Round 2</td><td>April – May</td></tr>
+                    <tr><td>Round 3</td><td>June – July</td></tr>
+                    <tr><td>Round 4</td><td>August – September</td></tr>
+                    <tr><td>Round 5</td><td>October – November</td></tr>
+                </tbody>
+            </table>
+
+            <div class="info-section">
+                <h4>How It Works</h4>
+                <ul>
+                    <li><strong>Join Anytime:</strong> New players can join at the start of any round.</li>
+                    <li><strong>Box Grouping:</strong> Players will be grouped based on past performance or known ability.</li>
+                    <li><strong>Match Scheduling:</strong> Players contact each other directly to arrange matches.</li>
+                    <li><strong>Scoring:</strong> Best of 3 standard sets, OR 2 sets with a 10-point match tie break at 1 all.</li>
+                    <li><strong>Points:</strong> Win = 2 points, Loss = 1</li>
+                    <li><strong>Promotion/Relegation:</strong> Top players move up a box, bottom may move down (if enough participants).</li>
+                    <li><strong>Reporting Results:</strong> Post match scores using a google form: <a href= "https://forms.gle/JTerYsADVH8ukbTW7" target="_blank">DTC Box League - Submit Scores - Google Forms</a></li>
+                </ul>
+            </div>
+
+            <p>If you are interested in playing please sign up using the form below.</p>
+            <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSfaBiGWHBvGYVIXNhWPffa0pb-NuMT_CkdPfyxRXj8ZDwWJQQ/viewform?usp=sharing" target="_blank">DTC Box League - Player Sign Up Form</a></p>
+
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Digswell Tennis Club Box League</p>
+        </footer>
+    </div>
+</body>
+</html>
