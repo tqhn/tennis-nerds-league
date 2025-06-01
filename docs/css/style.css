@@ -1,0 +1,183 @@
+/* --- DTC Box League Base Styles --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+}
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+}
+header {
+    background-color: #004d40; /* Dark Teal */
+    color: #ffffff;
+    padding: 25px 0;
+    text-align: center;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 30px;
+}
+header h1 {
+    margin: 0;
+    font-size: 2.8em;
+    letter-spacing: 1.5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0;
+    display: flex;
+    justify-content: center;
+    background-color: #00695c; /* Slightly lighter teal */
+    border-radius: 0 0 8px 8px;
+}
+nav li {
+    margin: 0 15px;
+}
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 20px;
+    display: block;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+nav a:hover, nav a.active {
+    background-color: #00897b; /* Even lighter teal */
+    border-radius: 5px;
+    color: #e0f2f1;
+}
+main {
+    padding: 20px 0;
+}
+h2 {
+    color: #004d40;
+    font-size: 2.2em;
+    border-bottom: 2px solid #e0f2f1;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    text-align: center;
+}
+h3 {
+    color: #00695c;
+    font-size: 1.6em;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+.data-table {
+    width: 100%; /* Important for tables */
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.data-table th, .data-table td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+}
+.data-table th {
+    background-color: #e0f2f1; /* Lightest teal */
+    color: #004d40;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+.data-table tbody tr:nth-child(even) {
+    background-color: #f9fdfc;
+}
+.data-table tbody tr:hover {
+    background-color: #e6f7f6;
+    cursor: pointer;
+}
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 1px solid #e0f2f1;
+    color: #666;
+    font-size: 0.9em;
+}
+footer p {
+    margin: 5px 0;
+}
+.no-data-message {
+    text-align: center;
+    font-size: 1.2em;
+    color: #777;
+    padding: 50px 0;
+}
+
+/* --- Responsive Design Additions --- */
+
+/* For smaller screens (e.g., phones, up to 768px wide) */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 15px;
+        box-shadow: none; /* Reduce shadow on small screens for cleaner look */
+        border-radius: 0;
+    }
+
+    header h1 {
+        font-size: 1.8em; /* Smaller heading on mobile */
+        padding: 15px 0;
+    }
+
+    /* Adjust navigation for mobile: stack items vertically */
+    nav ul {
+        flex-direction: column; /* Stack navigation items vertically */
+        align-items: center; /* Center items when stacked */
+        margin-top: 10px;
+        border-radius: 0;
+    }
+    nav li {
+        margin: 5px 0; /* Adjust spacing between stacked links */
+        width: 90%; /* Make links nearly full width for easier tapping */
+        text-align: center;
+    }
+    nav a {
+        padding: 10px;
+        width: 100%; /* Ensure link text fills the button */
+    }
+
+    h2 {
+        font-size: 1.5em; /* Smaller main subheadings */
+        margin-top: 20px;
+    }
+
+    h3 {
+        font-size: 1.2em; /* Smaller sub-subheadings */
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    /* Responsive Table Strategy: Make tables horizontally scrollable */
+    .data-table {
+        display: block; /* Changes table to block-level element, allowing overflow */
+        overflow-x: auto; /* Adds horizontal scrollbar if content overflows */
+        white-space: nowrap; /* Prevents text wrapping in cells, keeping columns aligned */
+        -webkit-overflow-scrolling: touch; /* Improves scrolling performance on iOS devices */
+        border: 1px solid #ddd; /* Re-add table border as it might be affected by display:block */
+    }
+}
+
+/* For larger tablets and small desktops (screens between 769px and 1024px wide) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        margin: 15px auto;
+        padding: 25px;
+    }
+    header h1 {
+        font-size: 2.2em;
+    }
+    nav li {
+        margin: 0 10px; /* Slightly reduce spacing */
+    }
+}
