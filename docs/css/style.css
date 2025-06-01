@@ -158,13 +158,49 @@ footer p {
         text-align: center;
     }
 
-    /* Responsive Table Strategy: Make tables horizontally scrollable */
-    .data-table {
-        display: block; /* Changes table to block-level element, allowing overflow */
-        overflow-x: auto; /* Adds horizontal scrollbar if content overflows */
-        white-space: nowrap; /* Prevents text wrapping in cells, keeping columns aligned */
-        -webkit-overflow-scrolling: touch; /* Improves scrolling performance on iOS devices */
-        border: 1px solid #ddd; /* Re-add table border as it might be affected by display:block */
+    /* --- Responsive Table Strategy: Stack rows as cards on mobile --- */
+    .data-table, .data-table thead, .data-table tbody, .data-table th, .data-table td, .data-table tr {
+        display: block; /* Make all table components block-level */
+    }
+
+    .data-table thead {
+        /* Hide the original table headers on small screens */
+        display: none;
+    }
+
+    .data-table tr {
+        margin-bottom: 15px; /* Space between "cards" */
+        border: 1px solid #ddd; /* Border around each row-card */
+        border-radius: 8px; /* Rounded corners for cards */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow for cards */
+        overflow: hidden; /* Ensure rounded corners apply */
+    }
+
+    .data-table td {
+        border: none; /* Remove individual cell borders */
+        border-bottom: 1px solid #eee; /* Add a light separator between stacked cells */
+        position: relative; /* Needed for pseudo-elements */
+        padding-left: 50%; /* Make space for the data-label */
+        text-align: right; /* Align cell content to the right */
+        white-space: normal; /* Allow text to wrap within cells */
+    }
+
+    .data-table td:last-child {
+        border-bottom: 0; /* No border on the last cell in a row */
+    }
+
+    .data-table td::before {
+        /* This creates the "label" for each cell from the data-label attribute */
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: calc(50% - 20px); /* Adjust width based on padding-left */
+        padding-right: 10px; /* Space between label and value */
+        white-space: nowrap; /* Keep label on one line */
+        text-align: left; /* Align label to the left */
+        font-weight: bold;
+        color: #004d40; /* Dark Teal for labels */
+        box-sizing: border-box; /* Include padding in width calculation */
     }
 }
 
