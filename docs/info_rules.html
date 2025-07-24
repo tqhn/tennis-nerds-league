@@ -5,6 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DTC Box League - Info & Rules</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Basic styling for the round cards */
+        .round-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+            justify-content: center; /* Center the cards */
+        }
+        .round-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: calc(33% - 20px); /* Adjust width for 3 cards per row, accounting for gap */
+            min-width: 280px; /* Minimum width to ensure readability on smaller screens */
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .round-card h3 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .round-card p {
+            margin: 8px 0;
+            font-size: 0.95em;
+            color: #555;
+        }
+        .round-card strong {
+            color: #000;
+        }
+        @media (max-width: 768px) {
+            .round-card {
+                width: calc(50% - 20px); /* 2 cards per row on medium screens */
+            }
+        }
+        @media (max-width: 480px) {
+            .round-card {
+                width: 100%; /* 1 card per row on small screens */
+            }
+        }
+
+        /* Styling for the contact section */
+        .contact-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e9f5f9; /* Light blue background for contrast */
+            border-left: 5px solid #007bff; /* Blue accent border */
+            border-radius: 5px;
+        }
+        .contact-section h4 {
+            color: #007bff;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .contact-section p {
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -27,22 +88,44 @@
             <p>For all members over 16.</p>
             <p>Players will be grouped into boxes (typically 4–5 players per group), and each player plays every other player in their box during the round.</p>
 
-            <h3>Round Periods</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Round</th>
-                        <th>Period</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>Round 1</td><td>February – March</td></tr>
-                    <tr><td>Round 2</td><td>April – May</td></tr>
-                    <tr><td>Round 3</td><td>June – July</td></tr>
-                    <tr><td>Round 4</td><td>August – September</td></tr>
-                    <tr><td>Round 5</td><td>October – November</td></tr>
-                </tbody>
-            </table>
+            <h3>Round Periods & Details</h3>
+            <div class="round-cards">
+                <div class="round-card">
+                    <h3>Round 1</h3>
+                    <p><strong>Signup Closes:</strong> January 31</p>
+                    <p><strong>Start Date:</strong> February 1</p>
+                    <p><strong>End Date:</strong> March 31</p>
+                    <p><strong>Duration:</strong> ~8 Weeks</p>
+                </div>
+                <div class="round-card">
+                    <h3>Round 2</h3>
+                    <p><strong>Signup Closes:</strong> March 31</p>
+                    <p><strong>Start Date:</strong> April 1</p>
+                    <p><strong>End Date:</strong> May 31</p>
+                    <p><strong>Duration:</strong> ~8 Weeks</p>
+                </div>
+                <div class="round-card">
+                    <h3>Round 3</h3>
+                    <p><strong>Signup Closes:</strong> May 31</p>
+                    <p><strong>Start Date:</strong> June 1</p>
+                    <p><strong>End Date:</strong> July 31</p>
+                    <p><strong>Duration:</strong> ~8 Weeks</p>
+                </div>
+                <div class="round-card">
+                    <h3>Round 4</h3>
+                    <p><strong>Signup Closes:</strong> July 31</p>
+                    <p><strong>Start Date:</strong> August 1</p>
+                    <p><strong>End Date:</strong> September 30</p>
+                    <p><strong>Duration:</strong> ~8 Weeks</p>
+                </div>
+                <div class="round-card">
+                    <h3>Round 5</h3>
+                    <p><strong>Signup Closes:</strong> September 30</p>
+                    <p><strong>Start Date:</strong> October 1</p>
+                    <p><strong>End Date:</strong> November 30</p>
+                    <p><strong>Duration:</strong> ~8 Weeks</p>
+                </div>
+            </div>
 
             <div class="info-section">
                 <h4>How It Works</h4>
@@ -51,7 +134,7 @@
                     <li><strong>Box Grouping:</strong> Players will be grouped based on past performance or known ability.</li>
                     <li><strong>Match Scheduling:</strong> Players contact each other directly to arrange matches.</li>
                     <li><strong>Scoring:</strong> Best of 3 standard sets, OR 2 sets with a 10-point match tie break at 1 all.</li>
-                    <li><strong>Points:</strong> Win = 2 points, Loss = 1</li>
+                    <li><strong>Points:</strong> Win = 3 points, Loss = 1</li>
                     <li><strong>Promotion/Relegation:</strong> Top players move up a box, bottom may move down (if enough participants).</li>
                     <li><strong>Reporting Results:</strong> Post match scores using a google form: <a href= "https://forms.gle/JTerYsADVH8ukbTW7" target="_blank">DTC Box League - Submit Scores - Google Forms</a></li>
                 </ul>
@@ -59,6 +142,12 @@
 
             <p>If you are interested in playing please sign up using the form below.</p>
             <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSfaBiGWHBvGYVIXNhWPffa0pb-NuMT_CkdPfyxRXj8ZDwWJQQ/viewform?usp=sharing" target="_blank">DTC Box League - Player Sign Up Form</a></p>
+
+            <div class="contact-section">
+                <h4>Contact Us</h4>
+                <p>For any questions, please contact us at:</p>
+                <p>Email: <a href="dtc.boxleague@icloud.com">dtc.boxleague@icloud.com</a></p>
+            </div>
 
         </main>
 
