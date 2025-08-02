@@ -121,7 +121,7 @@ footer p {
     .container {
         margin: 10px;
         padding: 15px;
-        box-shadow: none; /* Reduce shadow on small screens for a cleaner look */
+        box-shadow: none; /* Reduce shadow on small screens for cleaner look */
         border-radius: 0;
     }
 
@@ -130,20 +130,21 @@ footer p {
         padding: 15px 0;
     }
 
-    /* Adjust navigation for mobile: allow items to wrap */
+    /* Adjust navigation for mobile: stack items vertically */
     nav ul {
-        flex-wrap: wrap; /* Allow items to wrap to a new line */
-        justify-content: center; /* Keep items centered */
+        flex-direction: column; /* Stack navigation items vertically */
+        align-items: center; /* Center items when stacked */
         margin-top: 10px;
         border-radius: 0;
     }
     nav li {
-        margin: 5px; /* Add some space between links */
-        /* You might want to adjust width if you want links to be a specific size */
+        margin: 5px 0; /* Adjust spacing between stacked links */
+        width: 90%; /* Make links nearly full width for easier tapping */
+        text-align: center;
     }
     nav a {
-        padding: 8px 12px; /* Reduce padding to help them fit */
-        /* Remove the width: 100% that was used for the stacked look */
+        padding: 10px;
+        width: 100%; /* Ensure link text fills the button */
     }
 
     h2 {
@@ -156,31 +157,31 @@ footer p {
         margin-top: 20px;
         text-align: center;
     }
-    
-    /* Responsive Table Strategy */
+
+    /* Responsive Table Strategy: Make tables horizontally scrollable */
     .data-table {
-        width: 100%; /* Ensure table doesn't get wider than its container */
-        border-collapse: collapse;
-        display: block;
+        display: block; /* Changes table to block-level element, allowing overflow */
         overflow-x: auto; /* Adds horizontal scrollbar if content overflows */
+        white-space: nowrap; /* Prevents text wrapping in cells, keeping columns aligned */
         -webkit-overflow-scrolling: touch; /* Improves scrolling performance on iOS devices */
+        border: 1px solid #ddd; /* Re-add table border as it might be affected by display:block */
     }
 
-    /* Reduce font size and padding inside table cells to help them fit */
-    .data-table th,
-    .data-table td {
-        font-size: 0.8em; /* Smaller font for better fit */
-        padding: 8px;    /* Reduced padding */
-        border: 1px solid #ddd;
-        white-space: normal; /* THIS IS THE KEY FIX: ALLOWS TEXT TO WRAP */
-    }
-    
-    /* These rules were from a different strategy and are now removed/modified */
+    /* Reset any specific mobile table cell/row styling that was for stacking */
     .data-table tr {
         margin-bottom: 0;
         border: none;
         box-shadow: none;
         overflow: visible;
+    }
+    .data-table td {
+        border: 1px solid #ddd; /* Re-add original cell borders */
+        padding-left: 12px; /* Reset padding-left */
+        text-align: left; /* Reset text-align */
+        white-space: normal; /* Allow text wrapping for wider screens */
+    }
+    .data-table td::before {
+        content: none; /* Remove data-label pseudo-element */
     }
 }
 
@@ -194,6 +195,6 @@ footer p {
         font-size: 2.2em;
     }
     nav li {
-        margin: 0 10px;
+        margin: 0 10px; /* Slightly reduce spacing */
     }
 }
