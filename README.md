@@ -1,1 +1,1 @@
-# DTC-box-league
+# Tennis Nerds League
