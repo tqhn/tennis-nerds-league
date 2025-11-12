@@ -2,3 +2,5 @@
 *.db
 html_reports/
 .env
+docs_test/
+credentials.env
