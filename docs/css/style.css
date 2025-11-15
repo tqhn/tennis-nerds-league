@@ -1,12 +1,17 @@
-/* --- DTC Box League Base Styles --- */
+/* NOTE: You MUST include the Montserrat font link in your HTML <head> for this CSS to work:
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+*/
+
+/* 1. Global Styles and Primary Font */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f7f6;
-    color: #333;
+    color: #1a1a1a; /* Primary text color: Black */
     line-height: 1.6;
 }
+
 .container {
     max-width: 1200px;
     margin: 20px auto;
@@ -15,34 +20,79 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border-radius: 8px;
 }
+
+/* 2. Header and Navigation Colors */
 header {
-    background-color: #004d40; /* Dark Teal */
-    color: #ffffff;
-    padding: 25px 0;
+    background-color: #78A93F; /* Black/Dark Background */
+    color: #ffffff; 
+    padding: 1px 0;
     text-align: center;
     border-radius: 8px 8px 0 0;
-    margin-bottom: 30px;
+    margin-bottom: 1px;
+    padding-bottom: 1px;
 }
+
+/* Base H1 styling, crucial for font-size and spacing */
 header h1 {
     margin: 0;
     font-size: 2.8em;
     letter-spacing: 1.5px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    text-shadow: none;
 }
+
+/* --- Specific Multi-Colored Title Styling (Requires HTML span structure) --- */
+/*
+    Remember to update your HTML:
+    <h1 class="league-title">
+        <span class="tennis">tennis</span><span class="nerds">nerds</span><span class="league"> league</span>
+    </h1>
+*/
+.league-title span {
+    font-size: 1em; /* Inherit size from H1 */
+    letter-spacing: 1.5px;
+}
+.league-title .tennis {
+    font-weight: 10; /* Regular weight */
+    color: #1a1a1a; /* White text for contrast on the black header */
+}
+.league-title .nerds {
+    font-weight: 700; /* Bold weight */
+    color: #ffffff; /* Green accent color */
+}
+.league-title .league {
+    font-weight: 700; /* Bold weight */
+    color: #e76f24; /* Orange accent color */
+}
+
+/* Hide the H1 title text visually, keeping the logo prominent */
+.league-title {
+    /* Hide the element, but keep it accessible to screen readers/SEO */
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+
+/* Navigation - CHANGED TO GREEN BACKGROUND */
 nav ul {
     list-style: none;
     padding: 0;
-    margin: 20px 0 0;
+    margin: 1px 0 0;
     display: flex;
     justify-content: center;
-    background-color: #00695c; /* Slightly lighter teal */
+    background-color: #8bc34a; /* Primary color: Green */
     border-radius: 0 0 8px 8px;
 }
 nav li {
     margin: 0 15px;
 }
 nav a {
-    color: #ffffff;
+    color: #ffffff; /* Dark text for contrast on green */
     text-decoration: none;
     padding: 12px 20px;
     display: block;
@@ -50,29 +100,32 @@ nav a {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 nav a:hover, nav a.active {
-    background-color: #00897b; /* Even lighter teal */
+    background-color: #548D0F; /* Dark hover color (Black) */
     border-radius: 5px;
-    color: #e0f2f1;
+    color: #ffffff; /* White text on hover */
 }
+
 main {
     padding: 20px 0;
 }
+
+/* 3. Headings and Table Accents */
 h2 {
-    color: #004d40;
+    color: #78A93F; /* Green accent color */
     font-size: 2.2em;
-    border-bottom: 2px solid #e0f2f1;
+    border-bottom: 2px solid #78A93F; /* Border changed to Orange accent */
     padding-bottom: 10px;
     margin-top: 30px;
     text-align: center;
 }
 h3 {
-    color: #00695c;
+    color: #78A93F; /* Green accent color (for 'Box A' heading) */
     font-size: 1.6em;
     margin-top: 25px;
     margin-bottom: 15px;
 }
 .data-table {
-    width: 100%; /* Important for tables */
+    width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -83,8 +136,8 @@ h3 {
     text-align: left;
 }
 .data-table th {
-    background-color: #e0f2f1; /* Lightest teal */
-    color: #004d40;
+    background-color: #f2f2f2; /* Light grey for contrast */
+    color: #78A93F; /* Dark text */
     font-weight: bold;
     text-transform: uppercase;
     font-size: 0.9em;
@@ -93,14 +146,14 @@ h3 {
     background-color: #f9fdfc;
 }
 .data-table tbody tr:hover {
-    background-color: #e6f7f6;
+    background-color: #effce0; /* A very light shade of the new Green */
     cursor: pointer;
 }
 footer {
     text-align: center;
     padding: 20px;
     margin-top: 40px;
-    border-top: 1px solid #e0f2f1;
+    border-top: 1px solid #e0e0e0;
     color: #666;
     font-size: 0.9em;
 }
@@ -121,67 +174,65 @@ footer p {
     .container {
         margin: 10px;
         padding: 15px;
-        box-shadow: none; /* Reduce shadow on small screens for cleaner look */
+        box-shadow: none;
         border-radius: 0;
+
     }
 
     header h1 {
-        font-size: 1.8em; /* Smaller heading on mobile */
+        font-size: 1.8em;
         padding: 15px 0;
     }
 
     /* Adjust navigation for mobile: stack items vertically */
     nav ul {
-        flex-direction: column; /* Stack navigation items vertically */
-        align-items: center; /* Center items when stacked */
+        flex-direction: column;
+        align-items: center;
         margin-top: 10px;
         border-radius: 0;
+        background-color: #78A93F; /* Ensure mobile nav stays orange */
     }
     nav li {
-        margin: 5px 0; /* Adjust spacing between stacked links */
-        width: 90%; /* Make links nearly full width for easier tapping */
+        margin: 5px 0;
+        width: 90%;
         text-align: center;
     }
     nav a {
         padding: 10px;
-        width: 100%; /* Ensure link text fills the button */
+        width: 100%;
     }
 
     h2 {
-        font-size: 1.5em; /* Smaller main subheadings */
+        font-size: 1.5em;
         margin-top: 20px;
     }
 
     h3 {
-        font-size: 1.2em; /* Smaller sub-subheadings */
+        font-size: 1.2em;
         margin-top: 20px;
         text-align: center;
     }
 
     /* Responsive Table Strategy: Make tables horizontally scrollable */
     .data-table {
-        display: block; /* Changes table to block-level element, allowing overflow */
-        overflow-x: auto; /* Adds horizontal scrollbar if content overflows */
-        white-space: nowrap; /* Prevents text wrapping in cells, keeping columns aligned */
-        -webkit-overflow-scrolling: touch; /* Improves scrolling performance on iOS devices */
-        border: 1px solid #ddd; /* Re-add table border as it might be affected by display:block */
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid #ddd;
     }
-
+    
     /* Reset any specific mobile table cell/row styling that was for stacking */
-    .data-table tr {
-        margin-bottom: 0;
-        border: none;
-        box-shadow: none;
-        overflow: visible;
-    }
+    /* Removed the empty .data-table tr {} ruleset */
+    
     .data-table td {
-        border: 1px solid #ddd; /* Re-add original cell borders */
-        padding-left: 12px; /* Reset padding-left */
-        text-align: left; /* Reset text-align */
-        white-space: normal; /* Allow text wrapping for wider screens */
+        border: 1px solid #ddd;
+        padding-left: 12px;
+        text-align: left;
+        white-space: normal;
     }
     .data-table td::before {
-        content: none; /* Remove data-label pseudo-element */
+        content: none;
     }
 }
 
@@ -195,6 +246,36 @@ footer p {
         font-size: 2.2em;
     }
     nav li {
-        margin: 0 10px; /* Slightly reduce spacing */
+        margin: 0 10px;
     }
+    /* Removed the empty .data-table {} ruleset */
+}
+
+/* Styling for the Logo image within the Header */
+.header-logo-link {
+    display: inline-block;
+    padding: 10px 0;
+    /* If you want the logo to appear above the title and be centered */
+    display: block; /* Make it a block element to take its own line */
+    text-align: center; /* Center the image link itself */
+}
+
+.header-logo {
+    width: 100px; /* Set a fixed width */
+    height: 100px; /* Set a fixed height - MUST be equal to width for a perfect circle */
+    object-fit: contain; /* Ensures the whole logo is visible within the circle */
+    
+    /* --- Make it circular --- */
+    border-radius: 50%; /* This makes the square image into a circle */
+    
+    /* Optional: Add a border around the circular logo */
+    /* border: 2px solid #ffffff; */ /* Example: a thin white border */
+    transform: scale(1.1);
+    overflow: hidden;
+
+    /* Add a subtle shadow to make it pop */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    /* Optional: margin below the logo to separate it from the title */
+    margin-bottom:0px; 
 }
