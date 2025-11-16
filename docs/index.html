@@ -29,6 +29,7 @@
             <h2>Inaugural Round Standings <br>(01 Nov - 31 Dec)</h2>
             <h3>Box A</h3>
 
+                    <div class="table-wrapper">
                     <table class="data-table">
                         <thead>
                             <tr>
@@ -115,14 +116,50 @@
                         
                         </tbody>
                     </table>
+                    </div>
                     
         </main>
 
         <footer>
-            <p>Data last updated: <span id="last-updated">15 Nov 2025, 22:39:45</span></p>
+            <p>Data last updated: <span id="last-updated">16 Nov 2025, 15:28:43</span></p>
             <p>&copy; 2025 Tennis Nerds League</p>
         </footer>
     </div>
+    
+<script>
+window.addEventListener('load', function() {
+    function adjustFrozenColumns() {
+        document.querySelectorAll('.data-table').forEach(function(table) {
+            var firstCol = table.querySelector('th:nth-child(1)');
+            if (firstCol) {
+                var firstColWidth = firstCol.offsetWidth;
+                var secondCols = table.querySelectorAll('th:nth-child(2), td:nth-child(2)');
+                secondCols.forEach(function(cell) {
+                    cell.style.left = firstColWidth + 'px';
+                });
+            }
+        });
+    }
+    
+    adjustFrozenColumns();
+    window.addEventListener('resize', adjustFrozenColumns);
+    
+    // Hamburger menu toggle
+    var menuToggle = document.querySelector('.menu-toggle');
+    var navMenu = document.querySelector('nav ul');
+    
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            
+            // Update aria-expanded attribute for accessibility
+            var isExpanded = navMenu.classList.contains('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+        });
+    }
+});
+</script>
+
 </body>
 </html>
         

@@ -78,6 +78,24 @@ header h1 {
 }
 
 
+/* Hamburger Menu Button */
+.menu-toggle {
+    display: none;
+    background-color: #8bc34a;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5em;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 10px auto;
+    width: fit-content;
+}
+
+.menu-toggle:hover {
+    background-color: #548D0F;
+}
+
 /* Navigation - CHANGED TO GREEN BACKGROUND */
 nav ul {
     list-style: none;
@@ -124,10 +142,18 @@ h3 {
     margin-top: 25px;
     margin-bottom: 15px;
 }
+
+/* TABLE WRAPPER FOR HORIZONTAL SCROLLING */
+.table-wrapper {
+    overflow-x: auto;
+    position: relative;
+    margin-bottom: 20px;
+}
+
 .data-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    margin-bottom: 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 .data-table th, .data-table td {
@@ -142,6 +168,54 @@ h3 {
     text-transform: uppercase;
     font-size: 0.9em;
 }
+
+/* FROZEN COLUMNS - First two columns */
+.data-table th:nth-child(1),
+.data-table td:nth-child(1) {
+    position: sticky;
+    left: 0;
+    z-index: 3;
+    background-color: #f2f2f2;
+}
+
+.data-table th:nth-child(2),
+.data-table td:nth-child(2) {
+    position: sticky;
+    left: 0; /* Will be calculated based on first column width */
+    z-index: 3;
+    background-color: #f2f2f2;
+}
+
+/* For body cells, use white background */
+.data-table tbody td:nth-child(1),
+.data-table tbody td:nth-child(2) {
+    background-color: #fff;
+}
+
+/* For alternating row colors on frozen columns */
+.data-table tbody tr:nth-child(even) td:nth-child(1),
+.data-table tbody tr:nth-child(even) td:nth-child(2) {
+    background-color: #f9fdfc;
+}
+
+/* Hover state for frozen columns */
+.data-table tbody tr:hover td:nth-child(1),
+.data-table tbody tr:hover td:nth-child(2) {
+    background-color: #effce0;
+}
+
+/* Add a subtle shadow to show frozen column separation */
+.data-table th:nth-child(2)::after,
+.data-table td:nth-child(2)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -1px;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to right, rgba(0,0,0,0.08), transparent);
+}
+
 .data-table tbody tr:nth-child(even) {
     background-color: #f9fdfc;
 }
@@ -191,15 +265,20 @@ footer p {
         margin-top: 10px;
         border-radius: 0;
         background-color: #78A93F; /* Ensure mobile nav stays orange */
+        padding: 10px 0;
     }
     nav li {
         margin: 5px 0;
-        width: 90%;
+        width: 100%;
+        max-width: 300px;
         text-align: center;
+        list-style: none;
     }
     nav a {
-        padding: 10px;
+        padding: 12px 20px;
         width: 100%;
+        display: block;
+        box-sizing: border-box;
     }
 
     h2 {
@@ -213,17 +292,17 @@ footer p {
         text-align: center;
     }
 
-    /* Responsive Table Strategy: Make tables horizontally scrollable */
-    .data-table {
-        display: block;
+    /* Responsive Table Strategy: Make tables horizontally scrollable with frozen columns */
+    .table-wrapper {
         overflow-x: auto;
-        white-space: nowrap;
         -webkit-overflow-scrolling: touch;
-        border: 1px solid #ddd;
     }
     
-    /* Reset any specific mobile table cell/row styling that was for stacking */
-    /* Removed the empty .data-table tr {} ruleset */
+    .data-table {
+        display: table;
+        white-space: nowrap;
+        border: 1px solid #ddd;
+    }
     
     .data-table td {
         border: 1px solid #ddd;
@@ -248,7 +327,6 @@ footer p {
     nav li {
         margin: 0 10px;
     }
-    /* Removed the empty .data-table {} ruleset */
 }
 
 /* Styling for the Logo image within the Header */
