@@ -287,7 +287,7 @@ footer p {
         font-family: 'Montserrat', sans-serif;
         flex-shrink: 0;
         white-space: nowrap;
-        z-index: 1001;
+        z-index: 999;
         position: relative;
     }
 
@@ -306,7 +306,7 @@ footer p {
         max-width: 300px;
         height: 100vh;
         background-color: #78A93F;
-        z-index: 1000;
+        z-index: 1100;
         transition: right 0.3s ease-out;
         box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
         overflow-y: auto;

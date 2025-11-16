@@ -224,7 +224,7 @@
         </main>
 
         <footer>
-            <p>Data last updated: <span id="last-updated">16 Nov 2025, 19:01:49</span></p>
+            <p>Data last updated: <span id="last-updated">16 Nov 2025, 20:35:05</span></p>
             <p>&copy; 2025 Tennis Nerds League</p>
         </footer>
     </div>
@@ -258,7 +258,6 @@ window.addEventListener('load', function() {
             
             var isExpanded = navMenu.classList.contains('active');
             menuToggle.setAttribute('aria-expanded', isExpanded);
-            menuToggle.textContent = isExpanded ? '✕ Close' : '☰ Menu';
         });
         
         // Close menu when clicking on overlay
@@ -266,7 +265,6 @@ window.addEventListener('load', function() {
             if (e.target === navMenu) {
                 navMenu.classList.remove('active');
                 menuToggle.setAttribute('aria-expanded', 'false');
-                menuToggle.textContent = '☰ Menu';
             }
         });
         
@@ -276,7 +274,6 @@ window.addEventListener('load', function() {
             link.addEventListener('click', function() {
                 navMenu.classList.remove('active');
                 menuToggle.setAttribute('aria-expanded', 'false');
-                menuToggle.textContent = '☰ Menu';
             });
         });
     }

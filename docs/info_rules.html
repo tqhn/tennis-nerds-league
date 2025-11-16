@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tennis Nerds League - Info & Rules</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="dtc-favicon.png">
     <style>
@@ -74,7 +75,14 @@
             <a href="/" class="header-logo-link">
                 <img src="assets/TNL_logo_white.png" alt="Tennis Nerds League Logo" class="header-logo">
             </a>
-            <h1 class="league-title"></h1>
+            
+            <h1 class="league-title">
+                <span class="tennis">tennis</span><span class="nerds">nerds</span><span class="league">league</span>
+            </h1>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                ☰ Menu
+            </button>
             <nav>
                 <ul>
                     <li><a href="current_round_fixtures.html">Current Round Fixtures</a></li>
@@ -167,5 +175,40 @@
             <p>&copy; Tennis Nerds League</p>  
         </footer>
     </div>
+    
+    <script>
+window.addEventListener('load', function() {
+    // Hamburger menu toggle - slides in from right
+    var menuToggle = document.querySelector('.menu-toggle');
+    var navMenu = document.querySelector('nav');
+    
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navMenu.classList.toggle('active');
+            
+            var isExpanded = navMenu.classList.contains('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+        });
+        
+        // Close menu when clicking on overlay
+        navMenu.addEventListener('click', function(e) {
+            if (e.target === navMenu) {
+                navMenu.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+        
+        // Close menu when clicking on a navigation link
+        var navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+});
+    </script>
 </body>
 </html>
