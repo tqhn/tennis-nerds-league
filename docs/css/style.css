@@ -78,22 +78,9 @@ header h1 {
 }
 
 
-/* Hamburger Menu Button */
+/* Hamburger Menu Button - Hidden on desktop */
 .menu-toggle {
     display: none;
-    background-color: #8bc34a;
-    border: none;
-    color: #ffffff;
-    font-size: 1.5em;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin: 10px auto;
-    width: fit-content;
-}
-
-.menu-toggle:hover {
-    background-color: #548D0F;
 }
 
 /* Navigation - CHANGED TO GREEN BACKGROUND */
@@ -250,7 +237,6 @@ footer p {
         padding: 15px;
         box-shadow: none;
         border-radius: 0;
-
     }
 
     header h1 {
@@ -258,19 +244,50 @@ footer p {
         padding: 15px 0;
     }
 
-    /* Adjust navigation for mobile: stack items vertically */
+    /* Show and style hamburger menu button on mobile */
+    .menu-toggle {
+        display: block;
+        background-color: #8bc34a;
+        border: none;
+        color: #ffffff;
+        font-size: 1.5em;
+        padding: 12px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin: 10px auto;
+        text-align: center;
+        font-weight: bold;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .menu-toggle:hover,
+    .menu-toggle:active {
+        background-color: #548D0F;
+    }
+
+    /* Hide navigation by default on mobile */
     nav ul {
         flex-direction: column;
         align-items: center;
-        margin-top: 10px;
+        margin-top: 0;
         border-radius: 0;
-        background-color: #78A93F; /* Ensure mobile nav stays orange */
-        padding: 10px 0;
+        background-color: #78A93F;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
     }
+    
+    /* Show navigation when active */
+    nav ul.active {
+        max-height: 500px;
+        padding: 10px 0;
+        transition: max-height 0.4s ease-in;
+    }
+    
     nav li {
         margin: 5px 0;
         width: 100%;
-        max-width: 300px;
         text-align: center;
         list-style: none;
     }
