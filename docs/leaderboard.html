@@ -107,7 +107,7 @@
         </main>
 
         <footer>
-            <p>Data last updated: <span id="last-updated">16 Nov 2025, 15:57:51</span></p>
+            <p>Data last updated: <span id="last-updated">16 Nov 2025, 16:08:41</span></p>
             <p>&copy; 2025 Tennis Nerds League</p>
         </footer>
     </div>
@@ -130,17 +130,37 @@ window.addEventListener('load', function() {
     adjustFrozenColumns();
     window.addEventListener('resize', adjustFrozenColumns);
     
-    // Hamburger menu toggle
+    // Hamburger menu toggle - slides in from right
     var menuToggle = document.querySelector('.menu-toggle');
-    var navMenu = document.querySelector('nav ul');
+    var navMenu = document.querySelector('nav');
     
     if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', function() {
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
             navMenu.classList.toggle('active');
             
-            // Update aria-expanded attribute for accessibility
             var isExpanded = navMenu.classList.contains('active');
             menuToggle.setAttribute('aria-expanded', isExpanded);
+            menuToggle.textContent = isExpanded ? '✕ Close' : '☰ Menu';
+        });
+        
+        // Close menu when clicking on overlay
+        navMenu.addEventListener('click', function(e) {
+            if (e.target === navMenu) {
+                navMenu.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.textContent = '☰ Menu';
+            }
+        });
+        
+        // Close menu when clicking on a navigation link
+        var navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.textContent = '☰ Menu';
+            });
         });
     }
 });

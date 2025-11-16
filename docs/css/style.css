@@ -248,14 +248,15 @@ footer p {
         align-items: center;
         padding: 10px 15px;
         text-align: left;
+        flex-wrap: nowrap;
     }
 
     .header-logo-link {
         display: block;
         padding: 0;
         text-align: left;
-        order: 1;
         flex-shrink: 0;
+        margin-right: auto;
     }
 
     .header-logo {
@@ -266,14 +267,10 @@ footer p {
     }
 
     header h1 {
-        font-size: 1.8em;
-        padding: 0;
-        order: 2;
-        flex-grow: 1;
-        text-align: center;
+        display: none; /* Hide title on mobile to save space */
     }
 
-    /* Show and style hamburger menu button on mobile - positioned on the right */
+    /* Hamburger menu button - positioned on extreme right */
     .menu-toggle {
         display: block;
         background-color: #ffffff;
@@ -284,12 +281,14 @@ footer p {
         cursor: pointer;
         border-radius: 5px;
         margin: 0;
+        margin-left: auto;
         text-align: center;
         font-weight: bold;
         font-family: 'Montserrat', sans-serif;
-        order: 3;
         flex-shrink: 0;
         white-space: nowrap;
+        z-index: 1001;
+        position: relative;
     }
 
     .menu-toggle:hover,
@@ -298,43 +297,78 @@ footer p {
         color: #ffffff;
     }
 
-    /* Hide navigation by default on mobile */
+    /* Popup navigation menu */
     nav {
-        order: 4;
-        width: 100%;
-        flex-basis: 100%;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: #78A93F;
+        z-index: 1000;
+        transition: right 0.3s ease-out;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+        overflow-y: auto;
+    }
+    
+    /* Show navigation when active - slides in from right */
+    nav.active {
+        right: 0;
+        transition: right 0.3s ease-in;
     }
     
     nav ul {
         flex-direction: column;
-        align-items: center;
-        margin-top: 10px;
+        align-items: stretch;
+        margin: 0;
+        padding: 60px 0 20px 0;
         border-radius: 0;
-        background-color: #78A93F;
-        padding: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease-out;
-    }
-    
-    /* Show navigation when active */
-    nav ul.active {
-        max-height: 500px;
-        padding: 10px 0;
-        transition: max-height 0.4s ease-in;
+        background-color: transparent;
+        max-height: none;
+        overflow: visible;
     }
     
     nav li {
-        margin: 5px 0;
+        margin: 0;
         width: 100%;
-        text-align: center;
+        text-align: left;
         list-style: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
+    
     nav a {
-        padding: 12px 20px;
+        padding: 15px 25px;
         width: 100%;
         display: block;
         box-sizing: border-box;
+        color: #ffffff;
+        text-decoration: none;
+    }
+    
+    nav a:hover,
+    nav a.active {
+        background-color: #548D0F;
+        border-radius: 0;
+    }
+    
+    /* Overlay background when menu is open */
+    nav::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0);
+        z-index: -1;
+        pointer-events: none;
+        transition: background-color 0.3s ease;
+    }
+    
+    nav.active::before {
+        background-color: rgba(0, 0, 0, 0.5);
+        pointer-events: auto;
     }
 
     h2 {
