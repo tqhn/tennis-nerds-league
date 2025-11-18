@@ -211,16 +211,156 @@ h3 {
     background-color: #effce0; /* A very light shade of the new Green */
     cursor: pointer;
 }
+/* Footer Styles */
 footer {
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-    border-top: 1px solid #e0e0e0;
-    color: #666;
+    background-color: #f8f9fa;
+    padding: 40px 20px 20px;
+    margin-top: 60px;
+    border-top: 3px solid #78A93F;
+    color: #333;
     font-size: 0.9em;
 }
-footer p {
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-section {
+    padding: 0 10px;
+}
+
+.footer-section h4 {
+    color: #78A93F;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.footer-section p {
+    line-height: 1.6;
+    margin: 10px 0;
+    color: #555;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #78A93F;
+    text-decoration: underline;
+}
+
+/* Social Media Icons */
+.social-links {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #78A93F;
+    color: #ffffff;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.social-links a:hover {
+    background-color: #548D0F;
+    transform: scale(1.1);
+}
+
+/* Partner/Sponsor Section */
+.partner-logo {
+    max-width: 150px;
+    height: auto;
+    margin: 10px 0;
+    display: block;
+}
+
+.partner-info {
+    margin-top: 10px;
+}
+
+.partner-info p {
+    font-size: 0.85em;
     margin: 5px 0;
+    font-style: italic;
+}
+
+.partner-info a {
+    color: #78A93F;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.partner-info a:hover {
+    text-decoration: underline;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    color: #666;
+    font-size: 0.85em;
+}
+
+.footer-bottom p {
+    margin: 5px 0;
+}
+
+/* Responsive Footer */
+@media (max-width: 992px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .footer-section {
+        padding: 0;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .partner-logo {
+        margin: 10px auto;
+    }
 }
 .no-data-message {
     text-align: center;
