@@ -1,5 +1,13 @@
-docs/* linguist-documentation=false
+# 1. Force GitHub to look inside the docs folder (and its subfolders)
+docs/** linguist-documentation=false
+
+# 2. Ensure your Python and SQL are counted
 *.py linguist-detectable=true
 *.py linguist-language=Python
+
 *.sql linguist-detectable=true
 *.sql linguist-language=SQL
+
+# 3. Ensure the CSS inside docs/ is counted
+docs/css/*.css linguist-detectable=true
+docs/css/*.css linguist-language=CSS
