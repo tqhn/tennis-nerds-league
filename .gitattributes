@@ -1,0 +1,5 @@
+docs/* linguist-documentation=false
+*.py linguist-detectable=true
+*.py linguist-language=Python
+*.sql linguist-detectable=true
+*.sql linguist-language=SQL

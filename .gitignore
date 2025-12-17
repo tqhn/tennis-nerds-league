@@ -1,4 +1,4 @@
-*.py
+
 *.db
 html_reports/
 .env

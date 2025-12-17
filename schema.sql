@@ -1,77 +1,45 @@
--- In this SQL file, write (and comment!) the schema of your database, including the CREATE TABLE, CREATE INDEX, CREATE VIEW, etc. statements that compose it
-
--- Players table
-CREATE TABLE "players" (
-  "id" INT,
-  "name" TEXT NOT NULL,
-  "skill_level" TEXT,
-  "contact" TEXT,
-  PRIMARY KEY ("id")
+CREATE TABLE dbo.box_assignments (
+  box_assignment_id INTEGER PRIMARY KEY IDENTITY(1, 1),
+  round_id INTEGER NOT NULL,
+  box_id INTEGER NOT NULL,
+  player_id INTEGER NOT NULL,
+  -- Optionally, you could add a column to indicate the order of players within a box if needed for display
+  -- order_in_box INTEGER,
+  FOREIGN KEY (round_id) REFERENCES dbo.rounds(id),
+  FOREIGN KEY (box_id) REFERENCES dbo.boxes(id),
+  FOREIGN KEY (player_id) REFERENCES dbo.players(PlayerID),
+  -- A player should only be in one box per round
+  UNIQUE (round_id, player_id)
 );
-
--- Rounds table
-CREATE TABLE "rounds" (
-  "id" INT,
-  "name" TEXT NOT NULL,
-  "start_date" DATE,
-  "end_date" DATE,
-  PRIMARY KEY ("id")
-);
-
--- Boxes table
-CREATE TABLE "boxes" (
-  "id" INT,
-  "box_name" NOT NULL CHECK("box_name" IN ('box A', 'box B', 'box C', 'box D')),
-  PRIMARY KEY ("id")
-);
-
--- Matches table
-CREATE TABLE "matches" (
-  "id" INT,
-  "round_id" INT,
-  "box_id" INT,
-  "player1_id" INT,
-  "player2_id" INT,
-  "winner_id" INT,
-  "player1_set1_games" TEXT,
-  "player2_set1_games" TEXT,
-  "player1_set2_games" TEXT,
-  "player2_set2_games" TEXT,
-  "player1_set3_games" TEXT,
-  "player2_set3_games" TEXT,
-  "played_on" DATE,
-  FOREIGN KEY("round_id") REFERENCES rounds("id"),
-  FOREIGN KEY("player1_id") REFERENCES players("id"),
-  FOREIGN KEY("player2_id") REFERENCES players("id"),
-  FOREIGN KEY("winner_id") REFERENCES players("id")
-);
-
-
-
--- Box Assignment Table
-CREATE TABLE "box_assignments" (
-  "box_assignment_id" INT,
-  "box_id" INT,
-  "round_id" INT,
-  "player_id" INT,
-  PRIMARY KEY("box_assignment_id"),
-  FOREIGN KEY("box_id") REFERENCES boxes("id"),
-  FOREIGN KEY("round_id") REFERENCES rounds("id"),
-  FOREIGN KEY("player_id") REFERENCES players("id")
-);
-
--- Players Ranking table
-CREATE TABLE "players_ranking" (
-    "ranking_id" INT,
-    "player_id" INT,
-    "round_id" INT,
-    "final_rank" INT,
-    "matches_played" INT,
-    "wins" INT,
-    "losses" INT,
-    "draws" INT,
-    "points" INT,
-    PRIMARY KEY ("ranking_id"),
-    FOREIGN KEY("player_id") REFERENCES players("id"),
-    FOREIGN KEY("round_id") REFERENCES rounds("id")
+CREATE TABLE dbo.matches (
+  id INTEGER PRIMARY KEY IDENTITY(1, 1),
+  round_id INTEGER NOT NULL,
+  box_id INTEGER NOT NULL,
+  player1_id INTEGER NOT NULL,
+  player2_id INTEGER NOT NULL,
+  winner_id INTEGER,
+  -- NULL if draw or not played yet
+  is_draw BIT DEFAULT 0,
+  -- 1 for true (draw), 0 for false
+  player1_set1_games INTEGER,
+  player2_set1_games INTEGER,
+  player1_set2_games INTEGER,
+  player2_set2_games INTEGER,
+  player1_set3_games INTEGER,
+  player2_set3_games INTEGER,
+  played_on DATE,
+  -- Date the match was played
+  FOREIGN KEY (round_id) REFERENCES dbo.rounds(id),
+  FOREIGN KEY (box_id) REFERENCES dbo.boxes(id),
+  FOREIGN KEY (player1_id) REFERENCES dbo.players(PlayerID),
+  FOREIGN KEY (player2_id) REFERENCES dbo.players(PlayerID),
+  FOREIGN KEY (winner_id) REFERENCES dbo.players(PlayerID),
+  -- Ensure player1 and player2 are different
+  CHECK (player1_id <> player2_id),
+  -- winner_id must be either player1_id or player2_id if not a draw
+  CHECK (
+    winner_id IS NULL
+    OR winner_id = player1_id
+    OR winner_id = player2_id
+  )
 );
