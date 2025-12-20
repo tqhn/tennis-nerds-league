@@ -4,3 +4,4 @@ html_reports/
 .env
 docs_test/
 credentials.env
+league_hub.py
