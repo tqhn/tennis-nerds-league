@@ -125,7 +125,7 @@
         }).then(() => {
             status.style.color = "var(--color-primary-accent)";
             status.innerText = "Success! You are in. Check your email. 🎾";
-            this.reset();
+            this.style.display = "none"; // Hide the form so they don't double-click
         });
     });
 </script>
