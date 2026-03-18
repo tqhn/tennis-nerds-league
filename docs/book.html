@@ -102,11 +102,21 @@
 
 
                 card.innerHTML = `
-                    <div style="text-align:left;">
-                        <h4 style="margin:0; color:var(--color-primary-accent);">${ev.title}</h4>
+                    <div style="text-align:left; flex:1;">
+                        <h4 style="margin:0 0 5px 0; color:var(--color-primary-accent);">${ev.title}</h4>
                         <small>📅 ${eventDate} | ⏰ ${ev.time || 'TBA'} | 📍 ${ev.location || 'TBA'}</small>
+                        ${ev.description ? `<p style="margin:8px 0 0 0; font-size:0.9em; color:#555;">${ev.description}</p>` : ''}
                     </div>
-                    <div class="spots-label">${ev.remaining > 0 ? ev.remaining + ' Spots Left' : 'JOIN WAITLIST'}</div>
+                    <div style="margin-left:15px; text-align:right; flex-shrink:0;">
+                        <div class="spots-label">
+                            ${ev.remaining > 0 ? ev.remaining + ' Spots Left' : 'JOIN WAITLIST'}
+                        </div>
+                        <div style="margin-top:6px; font-size:0.8em; color:#888;">
+                            ${ev.attendeeCount > 0 
+                                ? `🎾 ${ev.attendees.join(', ')}${ev.attendeeCount > 5 ? ` +${ev.attendeeCount - 5} more` : ''} going`
+                                : '<span style="color:#aaa;">Be first to sign up!</span>'}
+                        </div>
+                    </div>
                 `;
                 
                 card.onclick = () => {
