@@ -20,18 +20,49 @@
         .session-list { display: flex; flex-direction: column; gap: 15px; margin: 20px 0; }
         .booking-card {
             border: 2px solid var(--color-primary-accent);
-            padding: 20px;
+            padding: 15px;
             border-radius: 8px;
             background: var(--color-white);
             cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             transition: all 0.2s ease;
         }
-        .booking-card:hover { border-color: var(--color-secondary-accent); background-color: #f9fdfc; }
-        .booking-card.selected { background-color: #effce0; border-width: 3px; border-color: var(--color-secondary-accent); }
-        .spots-label { font-weight: bold; color: var(--color-secondary-accent); }
+    .booking-card:hover { border-color: var(--color-secondary-accent); background-color: #f9fdfc; }
+    .booking-card.selected { background-color: #effce0; border-width: 3px; border-color: var(--color-secondary-accent); }
+    .card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 8px;
+    }
+    .card-title {
+        margin: 0;
+        color: var(--color-primary-accent);
+        font-size: 0.88em;
+        line-height: 1.3;
+        flex: 1;
+    }
+    .card-right {
+        text-align: right;
+        flex-shrink: 0;
+        min-width: 85px;
+    }
+    .card-meta {
+        font-size: 0.8em;
+        color: #666;
+    }
+    .card-attendees {
+        margin-top: 4px;
+        font-size: 0.75em;
+        color: #888;
+        line-height: 1.3;
+    }
+    .spots-label {
+        font-weight: bold;
+        color: var(--color-secondary-accent);
+        font-size: 0.9em;
+        white-space: nowrap;
+    }
         #form-section { display: none; margin-top: 30px; padding: 20px; background: var(--color-light-bg); border-radius: 8px; }
         input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
     </style>
@@ -102,21 +133,22 @@
 
 
                 card.innerHTML = `
-                    <div style="text-align:left; flex:1;">
-                        <h4 style="margin:0 0 5px 0; color:var(--color-primary-accent);">${ev.title}</h4>
-                        <small>📅 ${eventDate} | ⏰ ${ev.time || 'TBA'} | 📍 ${ev.location || 'TBA'}</small>
-                        ${ev.description ? `<p style="margin:8px 0 0 0; font-size:0.9em; color:#555;">${ev.description}</p>` : ''}
-                    </div>
-                    <div style="margin-left:15px; text-align:right; flex-shrink:0;">
-                        <div class="spots-label">
-                            ${ev.remaining > 0 ? ev.remaining + ' Spots Left' : 'JOIN WAITLIST'}
-                        </div>
-                        <div style="margin-top:6px; font-size:0.8em; color:#888;">
-                            ${ev.attendeeCount > 0 
-                                ? `🎾 ${ev.attendees.join(', ')}${ev.attendeeCount > 5 ? ` +${ev.attendeeCount - 5} more` : ''} going`
-                                : '<span style="color:#aaa;">Be first to sign up!</span>'}
+                    <div class="card-top">
+                        <h4 class="card-title">${ev.title}</h4>
+                        <div class="card-right">
+                            <div class="spots-label">
+                                ${ev.remaining > 0 ? ev.remaining + ' Spots Left' : 'Join Waitlist'}
+                            </div>
+                            <div class="card-attendees">
+                                ${ev.attendeeCount > 0 
+                                    ? `🎾 ${ev.attendees.join(', ')}${ev.attendeeCount > 5 ? ` +${ev.attendeeCount - 5}` : ''} going`
+                                    : '<span style="color:#aaa;">Be first!</span>'}
+                            </div>
                         </div>
                     </div>
+                    <div class="card-meta">📅 ${eventDate} | ⏰ ${ev.time || 'TBA'}</div>
+                    <div class="card-meta" style="margin-top:3px;">📍 ${ev.location || 'TBA'}</div>
+                    ${ev.description ? `<p style="margin:6px 0 0 0; font-size:0.82em; color:#555;">${ev.description}</p>` : ''}
                 `;
                 
                 card.onclick = () => {
