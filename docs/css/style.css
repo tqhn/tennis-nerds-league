@@ -1290,7 +1290,7 @@ nav ul li a.active {
 .cta-button {
     text-decoration: none;
     padding: 15px 30px;
-    font-size: 1.1em;
+    font-size: 0.9em;
     font-weight: 700;
     border-radius: 50px; 
     transition: transform 0.2s, opacity 0.2s;
