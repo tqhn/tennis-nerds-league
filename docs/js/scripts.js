@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load shared footer on all pages
     var placeholder = document.getElementById('footer-placeholder');
     if (placeholder) {
-        fetch('_footer.html')
+        fetch('footer.html')
             .then(function(response) {
                 if (!response.ok) throw new Error('Footer load failed');
                 return response.text();
@@ -157,7 +157,7 @@ function generateRoleContent(roles) {
 }
 
 
-fetch('_footer.html')
+fetch('footer.html')
     .then(function(response) {
         if (!response.ok) throw new Error('Footer load failed');
         return response.text();
