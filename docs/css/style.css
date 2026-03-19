@@ -580,6 +580,10 @@ footer {
     .footer-section {
         padding: 0;
     }
+
+    .footer-section p {
+        font-size: 0.85em;
+    }
     
     .social-links {
         justify-content: center;
