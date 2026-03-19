@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Impact - Tennis Nerds</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="dtc-favicon.png">
+
+    <style>
+        /* Custom styles for the Coming Soon content */
+        .impact-coming-soon {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f9fdfc 0%, #effce0 100%);
+            border-radius: 15px;
+            margin: 40px 0;
+            border: 1px solid #e0e0e0;
+        }
+
+        .impact-coming-soon h2 {
+            color: #78A93F;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .impact-coming-soon .tagline {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .progress-wrapper {
+            width: 100%;
+            max-width: 400px;
+            background-color: #ddd;
+            border-radius: 20px;
+            margin: 20px auto;
+            height: 12px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 70%; 
+            height: 100%;
+            background-color: #78A93F;
+            border-radius: 20px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #78A93F;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .impact-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .preview-box {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px dashed #78A93F;
+        }
+
+        .preview-box h4 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+
+        .preview-box p {
+            font-size: 0.85rem;
+            margin: 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="header-logo-link">
+                <img src="assets/tennisnerds.png" alt="Tennis Nerds" class="header-logo">
+            </a>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                ☰ Menu
+            </button>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a>League ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="league.html">TNL: Hertfordshire</a></li>
+                            <li><a href="leagueinfo.html">Info & Rules</a></li>
+                        </ul> 
+                    </li>
+                    <li><a href="social.html">Social</a></li>
+                    <li class="dropdown">
+                        <a class="active">About Us ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.html">Our Story</a></li>
+                            <li><a href="impact.html">Our Impact</a></li>
+                            <li><a href="volunteering.html">Volunteering</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="impact-coming-soon">
+                <span class="status-badge">COMING SOON</span>
+                <h2>Our Impact Report</h2>
+                <p class="tagline">Beyond the scoreboards, we're busy crunching the numbers to show how our community is making a difference on and off the court.</p>
+                
+                <div class="progress-wrapper">
+                    <div class="progress-fill"></div>
+                </div>
+                <p style="font-size: 0.9rem; color: #888;">Data Analysis: 70% Complete</p>
+
+                <div class="impact-preview-grid">
+                    <div class="preview-box">
+                        <h4>Community & Friendship</h4>
+                        <p>Mapping community growth across Hertfordshire.</p>
+                    </div>
+                    <div class="preview-box">
+                        <h4>Well-being & Mental Health</h4>
+                        <p>Hours of active play & social connection metrics.</p>
+                    </div>
+                    <div class="preview-box">
+                        <h4>Accessibility</h4>
+                        <p>Supporting local parks and public court play.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    
+        <div id="footer-placeholder"></div>
+        
+    </div>
+    
+<script src="js/scripts.js"></script>
+</body>
+</html>

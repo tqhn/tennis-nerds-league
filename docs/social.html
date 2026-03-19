@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Social Session in Hertfordshire | TennisNerds</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="dtc-favicon.png">
+    <style>
+        .session-list { display: flex; flex-direction: column; gap: 15px; margin: 20px 0; }
+        .booking-card {
+            border: 2px solid var(--color-primary-accent);
+            padding: 15px;
+            border-radius: 8px;
+            background: var(--color-white);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+    .booking-card:hover { border-color: var(--color-secondary-accent); background-color: #f9fdfc; }
+    .booking-card.selected { background-color: #effce0; border-width: 3px; border-color: var(--color-secondary-accent); }
+    .card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 8px;
+    }
+    .card-title {
+        margin: 0;
+        color: var(--color-primary-accent);
+        font-size: 0.88em;
+        line-height: 1.3;
+        flex: 1;
+    }
+    .card-right {
+        text-align: right;
+        flex-shrink: 0;
+        min-width: 85px;
+    }
+    .card-meta {
+        font-size: 0.8em;
+        color: #666;
+    }
+    .card-attendees {
+        margin-top: 4px;
+        font-size: 0.75em;
+        color: #888;
+        line-height: 1.3;
+    }
+    .spots-label {
+        font-weight: bold;
+        color: var(--color-secondary-accent);
+        font-size: 0.9em;
+        white-space: nowrap;
+    }
+        #form-section { display: none; margin-top: 30px; padding: 20px; background: var(--color-light-bg); border-radius: 8px; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+            <a href="/" class="header-logo-link">
+                <img src="assets/tennisnerds.png" alt="Tennis Nerds" class="header-logo">
+            </a>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                ☰ Menu
+            </button>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="">Home</a></li>
+                    <li class="dropdown">
+                        <a>League ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="league.html">TNL: Hertfordshire</a></li>
+                            <li><a href="leagueinfo.html">Info & Rules</a></li>
+                        </ul> 
+                    <li><a href="social.html" class="active">Social</a></li>
+                    <li class="dropdown">
+                        <a>About Us ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.html">Our Story</a></li>
+                            <li><a href="impact.html">Our Impact</a></li>
+                            <li><a href="volunteering.html">Volunteering</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html" class="">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+    <main>
+        <h2 style="margin-bottom: 5px;">What’s On</h2>
+        <p style="text-align: center; margin-top: 0; margin-bottom: 20px; font-size: 0.9em; color: #666;">
+            Live Tournament Trips, Match Screenings Meetups, and Socials in Hertfordshire or South East England.
+        </p>
+        <div id="session-list" class="session-list">
+            <p style="text-align:center; color: var(--color-secondary-accent)">Checking the schedule...</p>
+        </div>
+
+        <div id="form-section">
+            <h3 style="margin-top:0;">Finalise your RSVP</h3>
+            <form id="nerdForm">
+                <input type="hidden" name="eventId" id="hiddenEventId">
+                <label>Name</label>
+                <input type="text" name="name" required placeholder="Name">
+                <label>Email Address</label>
+                <input type="email" name="email" required placeholder="abc@gmail.org">
+                <button type="submit" class="cta-button primary" style="width:100%; border:none; margin-top:10px; cursor:pointer;">
+                    Confirm My Spot
+                </button>
+            </form>
+            <p id="status" style="text-align:center; font-weight:bold; margin-top:15px;"></p>
+        </div>
+        
+    </main>
+        
+        <div class="new-location-section">
+            <p> Want to become a <a href="volunteering.html" target="_blank">Social Lead</a> ? <a href="contact.html" target="_blank">Get in touch</a> with the admins!</p>
+        </div>
+
+</div>
+
+<script>
+    const API = "https://script.google.com/macros/s/AKfycbyFKVI7nPYLqD8wj0Hjg1rlMeUhGWSE2ap8Xo4fqd7IeUFyl72zeNELpQq1RjzsYbWB/exec";
+
+    fetch(API)
+        .then(res => res.json())
+        .then(data => {
+            const list = document.getElementById('session-list');
+            list.innerHTML = '';
+
+            // --- SORTING LOGIC ---
+            // This sorts the data by the date property before showing it
+            data.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+            if (data.length === 0) {
+                list.innerHTML = "<p>No active sessions found.</p>";
+                return;
+            }
+
+            data.forEach(ev => {
+                const card = document.createElement('div');
+                card.className = 'booking-card';
+                
+                // Better Date Formatting
+                const d = new Date(ev.date);
+                const eventDate = isNaN(d) ? ev.date : d.toLocaleDateString('en-GB', { 
+                    weekday: 'short', // Adds "Mon", "Tue", etc.
+                    day: '2-digit', 
+                    month: 'short',
+                    year: 'numeric' 
+                });
+
+
+                card.innerHTML = `
+                    <div class="card-top">
+                        <h4 class="card-title">${ev.title}</h4>
+                        <div class="card-right">
+                            <div class="spots-label">
+                                ${ev.remaining > 0 ? ev.remaining + ' Spots Left' : 'Join Waitlist'}
+                            </div>
+                            <div class="card-attendees">
+                                ${ev.attendeeCount > 0 
+                                    ? `🎾 ${ev.attendees.join(', ')}${ev.attendeeCount > 5 ? ` +${ev.attendeeCount - 5}` : ''} going`
+                                    : '<span style="color:#aaa;">Be first!</span>'}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-meta">📅 ${eventDate} | ⏰ ${ev.time || 'TBA'}</div>
+                    <div class="card-meta" style="margin-top:3px;">📍 ${ev.location || 'TBA'}</div>
+                    ${ev.description ? `<p style="margin:6px 0 0 0; font-size:0.82em; color:#555;">${ev.description}</p>` : ''}
+                `;
+                
+                card.onclick = () => {
+                    document.querySelectorAll('.booking-card').forEach(c => c.classList.remove('selected'));
+                    card.classList.add('selected');
+                    document.getElementById('hiddenEventId').value = ev.id;
+                    document.getElementById('form-section').style.display = 'block';
+                    document.getElementById('form-section').scrollIntoView({behavior: 'smooth'});
+                };
+                list.appendChild(card);
+            });
+        })
+        .catch(err => {
+            document.getElementById('session-list').innerHTML = "Error loading sessions.";
+        });
+
+    document.getElementById('nerdForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const status = document.getElementById('status');
+        status.innerText = "Booking your session...";
+
+        fetch(API, {
+            method: 'POST',
+            body: new URLSearchParams(new FormData(this)),
+            mode: 'no-cors'
+        }).then(() => {
+            status.style.color = "var(--color-primary-accent)";
+            status.innerText = "Success! You are in. Check your email. 🎾";
+            this.style.display = "none"; // Hide the form so they don't double-click
+        });
+    });
+</script>
+
+
+<div id="footer-placeholder"></div>
+
+<script src="js/scripts.js"></script>
+
+</body>
+</html>

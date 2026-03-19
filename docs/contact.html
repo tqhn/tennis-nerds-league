@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Tennis Nerds: Community, Consistency, Well-being</title> 
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="dtc-favicon.png"> 
+    
+    <style>
+        .contact-form-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: var(--color-light-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .contact-form-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--color-primary-accent);
+        }
+        .contact-form-container input[type="text"],
+        .contact-form-container input[type="email"],
+        .contact-form-container textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; 
+            font-size: 1em;
+        }
+        .contact-form-container textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        .contact-form-container button {
+            background-color: var(--color-primary-accent);
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px; 
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 700;
+            transition: background-color 0.3s;
+        }
+        .contact-form-container button:hover {
+            background-color: var(--color-nav-hover);
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+
+        <header>
+            <a href="/" class="header-logo-link">
+                <img src="assets/tennisnerds.png" alt="Tennis Nerds" class="header-logo">
+            </a>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="main-navigation">
+                ☰ Menu
+            </button>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="">Home</a></li>
+                    <li class="dropdown">
+                        <a>League ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="league.html">TNL: Hertfordshire</a></li>
+                            <li><a href="leagueinfo.html">Info & Rules</a></li>
+                        </ul> 
+                    <li><a href="social.html" class="">Social</a></li>
+                    <li class="dropdown">
+                        <a class="">About Us ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.html">Our Story</a></li>
+                            <li><a href="impact.html">Our Impact</a></li>
+                            <li><a href="volunteering.html">Volunteering</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <h2>Get In Touch</h2>
+
+            <section class="contact-info">
+                <p>We're here to help! Whether you have a question about the leagues, need support with a fixture, or want to discuss sponsorship, please use the form below or contact us directly.</p>
+                <div style="margin-top: 20px; text-align: center;">
+                    <p style="font-size: 1.1em; font-weight: 700;">General Inquiries:</p>
+                    <p style="font-size: 1.2em; color: var(--color-primary-accent);"><a href="mailto:hello@tennisnerds.org" style="color: var(--color-primary-accent); text-decoration: none;">hello@tennisnerds.org</a></p>
+                </div>
+            </section>
+
+            <div class="contact-form-container">
+                <form action="https://docs.google.com/forms/d/e/1FAIpQLSdmbsZmszHqwHOnS8EClV6RF9e2v-g-sMfSdrIiWpK8PheFaQ/formResponse" method="POST" target="_blank">
+                    
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="entry.123456789" required>
+
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="entry.987654321" required>
+
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="entry.543210987" required>
+
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="entry.102938475" required></textarea>
+
+                    <button type="submit">Send Message</button>
+                    
+                </form>
+            </div>
+            
+        </main>
+
+        <div id="footer-placeholder"></div>
+
+    </div>
+    
+    <script src="js/scripts.js"></script> 
+
+</body>
+</html>

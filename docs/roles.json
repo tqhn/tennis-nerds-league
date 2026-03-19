@@ -1,0 +1,67 @@
+[
+  {
+    "id": "social",
+    "title": "Social Lead",
+    "subtitle": "On-Court & Off-Court Welcoming",
+    "heading": "Social Lead (Doubles Tennis & Pub Socials)",
+    "description": "Help us run our popular weekend social doubles sessions for beginners/improvers. This role is about creating a fun, inclusive environment and managing player rotations smoothly.",
+    "details": [
+      "Focus: On-court setup, ice-breakers, managing player sign-ins and rotation.",
+      "Time Commitment: 3 hours per week (usually on a Sunday afternoon).",
+      "Ideal For: Energetic, social players who love meeting new people and keeping things moving."
+    ],
+    "linkText": "Express Interest",
+    "linkSubject": "Social Organiser Interest",
+    "buttonClass": "secondary"
+  },
+  {
+    "id": "committee",
+    "title": "Vice Chair & Secretary",
+    "subtitle": "Governance & Strategy",
+    "heading": "Vice Chair & Secretary (Governance)",
+    "description": "This is the most critical role, shaping the league's direction and ensuring longevity and fairness. You will be instrumental in making key decisions.",
+    "details": [
+      "Participate in decisions shaping league philosophy and structure",
+      "Formal Records: Maintaining electronic copies of all official documents, including the TNC Constitution and Rules.",
+      "Committee Meetings: Attending and formally minuting all Management Committee meetings (required at least twice per year).",
+      "Maintain confidentiality and follow the Data Processing Policy (Section 9).",
+      "Act as primary contact for Volkl UK & future partners and coordinate non-monetary prize agreements.",
+      "Responsible for managing volunteers for different roles - Social Media, Marketing & Social engagement",
+      "Time Commitment: Approximately 1-2 hours per week.",
+      "Ideal For: Experienced community leaders, or individuals with strong organizational skills."
+    ],
+    "linkText": "Apply for Committee Role",
+    "linkSubject": "Committee Member Interest",
+    "buttonClass": "primary"
+  },
+  {
+    "id": "marketing",
+    "title": "Marketing & Content",
+    "subtitle": "Social Media & Newsletter",
+    "heading": "Marketing and Content Creator",
+    "description": "Elevate the brand's profile! We need someone passionate about tennis and social media to manage our online presence and communication.",
+    "details": [
+      "Focus: Creating engaging content (photos/videos), writing short newsletters, and managing tennisnerds social accounts.",
+      "Time Commitment: Flexible, approximately 2-3 hours per week.",
+      "Ideal For: Creative individuals with experience in digital communication or content marketing."
+    ],
+    "linkText": "Express Interest",
+    "linkSubject": "Marketing Interest",
+    "buttonClass": "secondary"
+  },
+  {
+    "id": "admin",
+    "title": "Ad-Hoc Support",
+    "subtitle": "Data Entry & Logistics",
+    "heading": "Ad-Hoc Administrative Support",
+    "description": "Perfect for quick contributions! This role involves taking on short-term tasks that keep the league running smoothly behind the scenes.",
+    "details": [
+      "Focus: Short-term tasks such as data entry, occasional flyer design, or venue coordination.",
+      "Time Commitment: Varies greatly, perfect for contributing when you have spare time.",
+      "Ideal For: Detail-oriented people who prefer defined, non-continuous tasks."
+    ],
+    "linkText": "Contact for Tasks",
+    "linkSubject": "Admin Support Interest",
+    "buttonClass": "secondary"
+  }
+]

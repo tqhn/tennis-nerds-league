@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer | Tennis Nerds League - Community, Consistency, Well-being</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="dtc-favicon.png">
+</head>
+<body>
+    <div class="container">
+        
+        <header>
+            <a href="index.html" class="header-logo-link">
+                <div class="logo-frame">
+                    <img src="assets/tennisnerds.png" alt="Tennis Nerds" class="header-logo">
+                </div>
+            </a>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                ☰ Menu
+            </button>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="">Home</a></li>
+                    <li class="dropdown">
+                        <a>League ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="league.html">TNL: Hertfordshire</a></li>
+                            <li><a href="leagueinfo.html">Info & Rules</a></li>
+                        </ul> 
+                    <li><a href="social.html" class="">Social</a></li>
+                    <li class="dropdown">
+                        <a class="active">About Us ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.html">Our Story</a></li>
+                            <li><a href="impact.html">Our Impact</a></li>
+                            <li><a href="volunteering.html">Volunteering</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html" class="">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="volunteering-page">
+                <h2>🤝 Join Our Team: Volunteer Roles</h2>
+                <p>The Tennis Nerds is run entirely by committed volunteers. Give back to the community and help us grow!</p>
+
+                <div class="volunteer-grid indeed-style">
+                    
+                    <div class="role-tabs-container">
+                        <h2>Current Opportunities</h2>
+                        <div id="roles-nav"></div>
+                    </div>
+
+                    <div class="role-advert-container" id="roles-content">
+                        <p style="padding: 20px;">Loading volunteer roles...</p>
+                    </div>
+                    
+                </div>
+            </section>
+        </main>
+        
+    <div id="footer-placeholder"></div>
+
+    </div>
+    
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>
