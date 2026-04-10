@@ -6,3 +6,6 @@ docs_test/
 credentials.env
 league_hub.py
 activity_index.py   
+google_creds.json
+sync_scores.py
+dryrun.py
