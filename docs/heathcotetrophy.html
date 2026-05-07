@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Heathcote Trophy - Tennis Nerds League</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="dtc-favicon.png">
+    <style>
+        /* Tournament Hero Header */
+        .league-intro {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1a2a3a 0%, #000000 100%);
+            color: white;
+            border-radius: 12px 12px 0 0;
+            margin-top: 20px;
+        }
+        .league-intro h2 { font-size: 3em; margin-bottom: 10px; color: #78A93F; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; border: none; }
+        .trophy-subtitle { font-size: 1.3em; color: #bdc3c7; display: block; margin-bottom: 20px; }
+        
+        /* History & Heritage Section */
+        .history-box { 
+            background-color: #f0f4f0; 
+            border-bottom: 3px solid #78A93F; 
+            padding: 30px; 
+            border-radius: 0 0 12px 12px; 
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .history-box h4 { color: #1a2a3a; margin-top: 0; text-transform: uppercase; font-size: 0.9em; letter-spacing: 2px; }
+        .history-box p { font-style: italic; color: #444; max-width: 850px; margin: 0 auto; font-size: 1.05em; line-height: 1.8; }
+
+        /* Round Cards */
+        .round-cards { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px; justify-content: center; }
+        .round-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-top: 5px solid #78A93F;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            width: calc(25% - 20px);
+            min-width: 230px;
+            text-align: center;
+        }
+        .round-card h3 { color: #2c3e50; margin: 0 0 15px 0; font-size: 1.1em; }
+        .deadline { color: #e74c3c; font-weight: bold; display: block; margin-top: 10px; }
+
+        /* Grid Layout */
+        .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+        .info-section { background: white; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .info-section h4 { border-bottom: 2px solid #78A93F; padding-bottom: 10px; margin-top: 0; color: #2c3e50; text-transform: uppercase; }
+
+        .golden-rule { background-color: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; border-radius: 4px; margin: 30px 0; }
+
+        /* Buttons */
+        .cta-buttons { display: flex; gap: 15px; justify-content: center; margin-top: 30px; }
+        .btn { padding: 14px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase; }
+        .primary { background: #78A93F; color: white; }
+        .secondary { border: 2px solid #78A93F; color: #78A93F; }
+
+        @media (max-width: 768px) {
+            .round-card { width: 100%; }
+            .rules-grid { grid-template-columns: 1fr; }
+            .league-intro h2 { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="/" class="header-logo-link">
+                <img src="assets/tennisnerds.png" alt="Tennis Nerds" class="header-logo">
+            </a>
+            
+            <h1 class="league-title">
+                <span class="tennis">tennis</span><span class="nerds">nerds</span><span class="league">league</span>
+            </h1>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                ☰ Menu
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a class="active">Tournaments ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="league.html">Nerds League</a></li>
+                            <li><a href="heathcotetrophy.html">The Heathcote Trophy</a></li>
+                        </ul> 
+                    </li>
+                    <li><a href="social.html">Social</a></li>
+                    <li class="dropdown">
+                        <a>About Us ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.html">Our Story</a></li>
+                            <li><a href="impact.html">Our Impact</a></li>
+                            <li><a href="volunteering.html">Volunteering</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <div class="league-intro">
+                <span style="font-size: 3.5em; display: block; margin-bottom: 10px;">🏆</span>
+                <h2>The Heathcote Trophy</h2>
+                <span class="trophy-subtitle">The Shephalbury Park Summer Championship</span>
+                <p style="color: #78A93F; font-weight: bold; margin-top: -10px; font-size: 1.1em; letter-spacing: 0.5px;">
+                    Open to all players in Stevenage and surrounding areas in the county.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn primary">Enter Tournament</a>
+                    <a href="#" class="btn secondary">Live Bracket</a>
+                </div>
+            </div>
+
+            <div class="history-box">
+                <h4>A Legacy Reborn</h4>
+                <p>
+                    "Named in honor of the Heathcote family, the historic stewards of Shephalbury Manor since the 1500s, 
+            this trophy bridges the gap between the park's storied past and its competitive future. 
+            When you step onto the court, you aren't just playing a match—you are competing for a place in 
+            the history of the estate."    
+                </p>
+            </div>
+
+            <h3>The Road to the Title</h3>
+            <div class="round-cards">
+                <div class="round-card"> 
+                    <h3>Opening Round</h3>
+                    <p>Bracket Generated via LTA</p>
+                    <span class="deadline">Complete by: June 31st</span>
+                </div>
+                <div class="round-card">
+                    <h3>Quarter-Finals</h3>
+                    <p>The "Wimbledon" Window</p>
+                    <span class="deadline">Complete by: July 12th</span>
+                </div>
+                <div class="round-card">
+                    <h3>Semi-Finals</h3>
+                    <p>The Final Four</p>
+                    <span class="deadline">Complete by: Aug 2nd</span>
+                </div>
+                <div class="round-card">
+                    <h3>Grand Final</h3>
+                    <p>Championship 'Show Case' Match</p>
+                    <span class="deadline">Complete by: Aug 23rd</span>
+                </div>
+            </div>
+
+            <div class="rules-grid">
+                <div class="info-section">
+                    <h4>Tournament Format</h4>
+                    <ul>
+                        <li><strong>Eligibility:</strong> Mixed gender singles tournament, for all players over 18.</li>
+                        <li><strong>Dynamic Bracket:</strong> Standard knockout format. 'Byes' will be used if the final entry list does not perfectly fill the draw.</li>
+                        <li><strong>Match Scoring:</strong> Best of 3 standard sets.</li>
+                        <li><strong>Scheduling:</strong> This is a self-arranged tournament. Players must proactively contact opponents to book courts.</li>
+                    </ul>
+                </div>
+
+                <div class="info-section">
+                    <h4>Result Entry & WTN</h4>
+                    <ul>
+                        <li><strong>LTA Verified:</strong> All matches are Grade 7/Ungraded. Results will impact your ITF World Tennis Number (WTN).</li>
+                        <li><strong>Score Reporting:</strong> Winners must enter the final score into the LTA Portal within 24 hours of match completion.</li>
+                        <li><strong>Consolation Plate:</strong> First-round losers will be offered entry into a 'Plate' bracket to ensure a minimum of two competitive matches.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="golden-rule">
+                <strong>🛡️ The Golden Rule:</strong> 
+                The bracket must keep moving. Matches not completed by the deadline without a valid weather extension will be decided by the administrator (via walkover or coin-toss) to ensure the tournament stays on schedule.
+            </div>
+        </main>
+
+        <div id="footer-placeholder"></div>
+        
+    </div>
+    
+    <script src="js/scripts.js"></script>
+</body>
+</html>
