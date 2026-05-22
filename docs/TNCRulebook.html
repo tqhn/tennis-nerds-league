@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Nerds Community Rulebook</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="dtc-favicon.png">
+
+    <style>
+        /* =======================================
+           COMMUNITY GUIDELINES PAGE
+        ======================================= */
+
+        .rulebook-hero {
+            text-align: center;
+            padding: 50px 25px;
+            background: linear-gradient(135deg, #f9fdfc 0%, #effce0 100%);
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+
+        .guidelines-hero h2 {
+            font-size: 2.7em;
+            color: var(--color-primary-accent);
+            border: none;
+            margin-bottom: 15px;
+        }
+
+        .guidelines-hero p {
+            max-width: 850px;
+            margin: 0 auto;
+            font-size: 1.15em;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .guideline-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 28px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--color-primary-accent);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .guideline-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .guideline-card h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: var(--color-primary-accent);
+            font-size: 1.4em;
+        }
+
+        .guideline-card p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .guideline-card ul {
+            padding-left: 20px;
+            margin: 15px 0 0;
+        }
+
+        .guideline-card li {
+            margin-bottom: 10px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .community-highlight {
+            margin-top: 45px;
+            padding: 35px;
+            background-color: #e1f3c6;
+            border-left: 6px solid var(--color-primary-accent);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .community-highlight h3 {
+            margin-top: 0;
+            font-size: 2em;
+        }
+
+        .community-highlight p {
+            max-width: 800px;
+            margin: 15px auto 0;
+            font-size: 1.05em;
+            color: #444;
+            line-height: 1.8;
+        }
+
+        .contact-box {
+            margin-top: 40px;
+            text-align: center;
+            padding: 30px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .contact-box h3 {
+            margin-top: 0;
+        }
+
+        .contact-box a {
+            color: var(--color-primary-accent);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+
+            .guidelines-hero {
+                padding: 35px 20px;
+            }
+
+            .guidelines-hero h2 {
+                font-size: 2em;
+            }
+
+            .guidelines-hero p {
+                font-size: 1em;
+            }
+
+            .guideline-card {
+                padding: 22px;
+            }
+
+            .community-highlight {
+                padding: 25px 20px;
+            }
+
+            .community-highlight h3 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+
+        <a href="/" class="header-logo-link">
+            <img src="assets/tennisnerds.png" alt="Tennis Nerds" class="header-logo">
+        </a>
+
+        <h1 class="league-title">
+            <span class="tennis">tennis</span><span class="nerds">nerds</span>
+        </h1>
+
+        <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            ☰ Menu
+        </button>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+
+                <li class="dropdown">
+                    <a>Tournaments ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="leagueinfo.html">Tennisnerds League</a></li>
+                        <li><a href="heathcotetrophy.html">The Heathcote Trophy</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="social.html">Social</a></li>
+
+                <li class="dropdown">
+                    <a class="">About Us ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="impact.html">Our Impact</a></li>
+                        <li><a href="volunteering.html">Volunteering</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <!-- HERO SECTION -->
+
+        <section class="rulebook-hero">
+
+            <h2>TNC Rulebook</h2>
+
+            <p>
+                Tennis Nerds is built around respectful competition, positive energy,
+                inclusivity, and genuine community spirit.
+                Whether you join our tournaments, socials, WhatsApp groups,
+                or online discussions, these guidelines help create an environment
+                where everyone enjoys the game.
+            </p>
+
+        </section>
+
+        <!-- GUIDELINE CARDS -->
+
+        <section class="guidelines-grid">
+
+            <div class="guideline-card">
+                <h3>🎾 Respect Everyone</h3>
+
+                <p>
+                    Treat all members, organisers, opponents, and venues respectfully.
+                    Healthy competition is encouraged, but personal attacks and toxic behaviour are not.
+                </p>
+
+                <ul>
+                    <li>No harassment, bullying, or intimidation</li>
+                    <li>No discrimination or hate speech</li>
+                    <li>Respect different skill levels and backgrounds</li>
+                </ul>
+            </div>
+
+            <div class="guideline-card">
+                <h3>🏆 Play Fair</h3>
+
+                <p>
+                    Tennis Nerds promotes fair competition and good sportsmanship both on and off court.
+                </p>
+
+                <ul>
+                    <li>Follow tournament and match rules</li>
+                    <li>Report scores honestly</li>
+                    <li>Communicate clearly with opponents</li>
+                    <li>Avoid intentionally manipulating results</li>
+                </ul>
+            </div>
+
+            <div class="guideline-card">
+                <h3>🤝 Inclusive Community</h3>
+
+                <p>
+                    Players of all abilities and backgrounds are welcome in Tennis Nerds.
+                </p>
+
+                <ul>
+                    <li>Support beginners respectfully</li>
+                    <li>No gatekeeping or mocking others</li>
+                    <li>Help create a welcoming atmosphere</li>
+                </ul>
+            </div>
+
+            <div class="guideline-card">
+                <h3>📱 Social & Online Conduct</h3>
+
+                <p>
+                    Our online groups should remain friendly, useful, and tennis-focused.
+                </p>
+
+                <ul>
+                    <li>No spam or excessive self-promotion</li>
+                    <li>No abusive or inflammatory posts</li>
+                    <li>Respect members’ privacy</li>
+                    <li>Keep discussions constructive</li>
+                </ul>
+            </div>
+
+            <div class="guideline-card">
+                <h3>📍 Event & Venue Behaviour</h3>
+
+                <p>
+                    Please respect public facilities, venues, organisers, and court bookings.
+                </p>
+
+                <ul>
+                    <li>Arrive on time where possible</li>
+                    <li>Leave courts clean and tidy</li>
+                    <li>Respect venue staff and rules</li>
+                    <li>Communicate cancellations responsibly</li>
+                </ul>
+            </div>
+
+            <div class="guideline-card">
+                <h3>🛡 Safety & Privacy</h3>
+
+                <p>
+                    Member safety is important both online and during events.
+                </p>
+
+                <ul>
+                    <li>Respect personal boundaries</li>
+                    <li>Do not share private information without consent</li>
+                    <li>Report unsafe or inappropriate behaviour</li>
+                </ul>
+            </div>
+
+        </section>
+
+        <!-- COMMUNITY MESSAGE -->
+
+        <section class="community-highlight">
+
+            <h3>Built Around Community</h3>
+
+            <p>
+                Tennis Nerds exists to help people play more tennis,
+                improve their game, meet new people,
+                and enjoy the sport in a positive environment.
+                Every member contributes to the atmosphere we create together.
+            </p>
+
+        </section>
+
+        <!-- CONTACT -->
+
+        <section class="contact-box">
+
+            <h3>Questions or Concerns?</h3>
+
+            <p>
+                If you experience behaviour that violates these guidelines,
+                please contact the Tennis Nerds organisers directly.
+            </p>
+
+            <p>
+                📧 <a href="mailto:hello@tennisnerds.org">hello@tennisnerds.org</a>
+            </p>
+
+        </section>
+
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+</div>
+
+<script src="js/scripts.js"></script>
+
+</body>
+</html>
