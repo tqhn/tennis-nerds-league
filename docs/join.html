@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Us - Tennis Nerds: Community, Consistency, Well-being</title> 
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="dtc-favicon.png"> 
+    
+    <style>
+        .join-form-container {
+            max-width: 650px;
+            margin: 40px auto;
+            padding: 35px;
+            background-color: var(--color-light-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            font-family: 'Montserrat', sans-serif;
+        }
+        .form-intro {
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: #444;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .join-form-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--color-primary-accent);
+        }
+        .join-form-container .field-desc {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: -4px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .join-form-container input[type="text"],
+        .join-form-container input[type="email"],
+        .join-form-container select,
+        .join-form-container textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; 
+            font-size: 0.95em;
+            font-family: inherit;
+        }
+        .join-form-container select {
+            background-color: #fff;
+            cursor: pointer;
+        }
+        .join-form-container textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        .radio-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: normal !important;
+            color: #333 !important;
+            line-height: 1.4;
+        }
+        .radio-option input[type="radio"],
+        .radio-option input[type="checkbox"] {
+            margin-top: 3px;
+            cursor: pointer;
+        }
+        .conditional-field {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.02);
+            padding: 15px;
+            border-left: 4px solid var(--color-primary-accent);
+            border-radius: 4px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+        .join-form-container button {
+            background-color: var(--color-primary-accent);
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px; 
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 700;
+            transition: background-color 0.3s;
+            display: block;
+            margin-top: 20px;
+        }
+        .join-form-container button:hover {
+            background-color: var(--color-nav-hover);
+        }
+        .join-form-container button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .form-success {
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 1.1em;
+            color: #2e7d32;
+            line-height: 1.7;
+        }
+        .form-success .success-icon {
+            font-size: 3em;
+            display: block;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+
+        <header>
+            <a href="/" class="header-logo-link">
+                <img src="assets/tennisnerds.png" alt="Tennis Nerds" class="header-logo">
+            </a>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="main-navigation">
+                ☰ Menu
+            </button>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a>Tournaments ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="leagueinfo.html">Tennisnerds League</a></li>
+                            <li><a href="heathcotetrophy.html">The Heathcote Trophy</a></li>
+                        </ul> 
+                    </li> 
+                    <li><a href="social.html">Social</a></li>
+                    <li class="dropdown">
+                        <a>About Us ▾</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="about.html">Our Story</a></li>
+                            <li><a href="impact.html">Our Impact</a></li>
+                            <li><a href="volunteering.html">Volunteering</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="join.html" class="active">Join</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <h2>Become a Tennis Nerd 🎾</h2>
+
+            <div class="join-form-container">
+                <div class="form-intro">
+                    <p><strong>Welcome!</strong> Thanks for the request to join Tennis Nerds. 🎾 We're a community of players based in Herts & North London for both social hits and competitive matches.</p>
+                    <p>Please fill out these quick details so we can get you registered and into the WhatsApp group. It only takes a minute! See you on the court!</p>
+                </div>
+
+                <!-- No action/method/target — submission handled by JS below -->
+                <form id="join-form">
+                    
+                    <div class="form-group">
+                        <label for="first_name">First Name *</label>
+                        <input type="text" id="first_name" name="entry.283344662" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="last_name">Last Name *</label>
+                        <input type="text" id="last_name" name="entry.688013228" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email ID *</label>
+                        <input type="email" id="email" name="entry.2123851158" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="text" id="phone" name="entry.68943770" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wtn">What is your exact World Tennis Number (WTN Rating for singles/doubles)? *</label>
+                        <p class="field-desc">If unknown, please log in to <a href="https://www.lta.org.uk/advantage-home/my-game/" target="_blank">LTA Advantage</a> to find it or type 'Unknown'</p>
+                        <input type="text" id="wtn" name="entry.193594857" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="skill_level">Skill Level *</label>
+                        <p class="field-desc">Select from below that best matches your current game. (WTN ranges are based on official LTA/ITF mapping).</p>
+                        <select id="skill_level" name="entry.1996833352" required>
+                            <option value="" disabled selected>Select option...</option>
+                            <option value="WTN 40-38 (Beginner) : This player is just starting to play, has limited experience and is still working primarily on getting the ball into play.">WTN 40-38 (Beginner)</option>
+                            <option value="WTN 37-35 (Improver) : Able to judge ball flight and can sustain short rallies.">WTN 37-35 (Improver)</option>
+                            <option value="WTN 34-32 (Lower Intermediate) : Average player. Consistent on medium-paced shots, but not comfortable with all strokes.">WTN 34-32 (Lower Intermediate)</option>
+                            <option value="WTN 31-28 (Intermediate) : Above average. Consistent with moderate pace and good court coverage.">WTN 31-28 (Intermediate)</option>
+                            <option value="WTN 27-24 (Upper Intermediate) : Far-above average. Powerful strokes, directional control, and depth on both wings.">WTN 27-24 (Upper Intermediate)</option>
+                            <option value="WTN 23-20 (Lower Advanced) : Top club player. Can use power and handles fast pace.">WTN 23-20 (Lower Advanced)</option>
+                            <option value="WTN 19-13 (Advanced): Top city player. Good anticipation; wins points with smashes.">WTN 19-13 (Advanced)</option>
+                            <option value="WTN 12-1 (Performance/Elite): National or World ranked player. Power and consistency as major weapons.">WTN 12-1 (Performance/Elite)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Do you play tennis often? *</label>
+                        <div class="radio-group">
+                            <label class="radio-option"><input type="radio" name="entry.1016415884" value="Once a week" required> Once a week</label>
+                            <label class="radio-option"><input type="radio" name="entry.1016415884" value="More than once a week"> More than once a week</label>
+                            <label class="radio-option"><input type="radio" name="entry.1016415884" value="Once every month"> Once every month</label>
+                            <label class="radio-option"><input type="radio" name="entry.1016415884" value="A few times a year"> A few times a year</label>
+                            <label class="radio-option"><input type="radio" name="entry.1016415884" value="Never played, absolute beginner"> Never played, absolute beginner</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="why_join">Why do you want to join Tennis Nerds?</label>
+                        <textarea id="why_join" name="entry.933894159"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Where are you based? (Welwyn, Stevenage, Hertfordshire, London etc.) *</label>
+                        <p class="field-desc">This helps us coordinate local play at Shephalbury Park Stevenage and also social group travel for pro tournaments like Queen's, Wimbledon etc!</p>
+                        <input type="text" id="location" name="entry.648855849" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>How did you hear about us? *</label>
+                        <div class="radio-group">
+                            <label class="radio-option"><input type="radio" name="entry.283336885" value="Instagram" required> Instagram</label>
+                            <label class="radio-option"><input type="radio" name="entry.283336885" value="Word of Mouth"> Word of Mouth</label>
+                            <label class="radio-option"><input type="radio" name="entry.283336885" value="Google"> Google</label>
+                            <label class="radio-option"><input type="radio" name="entry.283336885" value="Invited"> Invited</label>
+                            <label class="radio-option"><input type="radio" name="entry.283336885" value="Reddit"> Reddit</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>What's your priority? *</label>
+                        <div class="radio-group">
+                            <label class="radio-option"><input type="radio" name="entry.1404988107" value="The Grind: Good few hours of hit." id="priority_grind" required> The Grind: Good few hours of hit.</label>
+                            <label class="radio-option"><input type="radio" name="entry.1404988107" value="The Social: Few hours hit and followed by a trip to pub/cafe." id="priority_social"> The Social: Few hours hit and followed by a trip to pub/cafe.</label>
+                            <label class="radio-option"><input type="radio" name="entry.1404988107" value="Both" id="priority_both"> Both</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group conditional-field" id="hosting_box">
+                        <label>Would you be willing to "Host" social sessions? *</label>
+                        <div class="radio-group">
+                            <label class="radio-option"><input type="radio" name="entry.1217474000" value="Yes - I can lead the session and the pub trip."> Yes - I can lead the session and the pub trip.</label>
+                            <label class="radio-option"><input type="radio" name="entry.1217474000" value="No - I'll like to just play."> No - I'll like to just play.</label>
+                            <label class="radio-option"><input type="radio" name="entry.1217474000" value="Maybe - I can help out occasionally."> Maybe - I can help out occasionally.</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Join our mailing list? *</label>
+                        <div class="radio-group">
+                            <label class="radio-option"><input type="radio" name="entry.1644417381" value="Yes" required> Yes</label>
+                            <label class="radio-option"><input type="radio" name="entry.1644417381" value="No"> No</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Declaration and Consent *</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="checkbox" name="entry.1475801707" value="By signing up, I confirm I am 18+ and consent to data processing for administration, match coordination, and public leaderboard/results publication. I accept the group rules, privacy policy and assume all personal risk for participation." required>
+                                <span>By signing up, I confirm I am 18+ and consent to <a href="https://tqhn.github.io/tennis-nerds-league/privacy_policy.html" target="_blank">data processing</a> for administration, match coordination, and public leaderboard/results publication. I accept the <a href="TNCRulebook.html" target="_blank">group rules</a>, privacy policy and assume all personal risk for participation.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submit-btn">Submit</button>
+                    
+                </form>
+            </div>
+            
+        </main>
+
+        <div id="footer-placeholder"></div>
+
+    </div>
+    
+    <script>
+        // ── Conditional hosting field ──────────────────────────────────────────
+        document.addEventListener('DOMContentLoaded', function() {
+            const radioSocial = document.getElementById('priority_social');
+            const radioBoth   = document.getElementById('priority_both');
+            const radioGrind  = document.getElementById('priority_grind');
+            const hostingBox  = document.getElementById('hosting_box');
+            const hostingInputs = hostingBox.querySelectorAll('input');
+
+            function toggleHostingField() {
+                if (radioSocial.checked || radioBoth.checked) {
+                    hostingBox.style.display = 'block';
+                    hostingInputs.forEach(input => input.required = true);
+                } else {
+                    hostingBox.style.display = 'none';
+                    hostingInputs.forEach(input => {
+                        input.required = false;
+                        input.checked  = false;
+                    });
+                }
+            }
+
+            radioSocial.addEventListener('change', toggleHostingField);
+            radioBoth.addEventListener('change',   toggleHostingField);
+            radioGrind.addEventListener('change',  toggleHostingField);
+        });
+
+        // ── Form submission ────────────────────────────────────────────────────
+        document.getElementById('join-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const form      = e.target;
+            const btn       = document.getElementById('submit-btn');
+            const container = document.querySelector('.join-form-container');
+
+            // Basic client-side validation already handled by `required` attributes.
+            // Disable button to prevent double-submit.
+            btn.disabled    = true;
+            btn.textContent = 'Submitting…';
+
+            const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfaBiGWHBvGYVIXNhWPffa0pb-NuMT_CkdPfyxRXj8ZDwWJQQ/formResponse';
+
+            try {
+                await fetch(FORM_URL, {
+                    method: 'POST',
+                    mode:   'no-cors',   // Required — Google blocks CORS on formResponse
+                    body:   new FormData(form)
+                });
+
+                // no-cors means we can't read the response status, but data IS sent.
+                container.innerHTML = `
+                    <div class="form-success">
+                        <span class="success-icon">🎾</span>
+                        <strong>You're registered!</strong><br><br>
+                        Thanks for joining Tennis Nerds. We'll be in touch soon to add you to the WhatsApp group.<br><br>
+                        See you on the court!
+                    </div>`;
+
+            } catch (err) {
+                btn.disabled    = false;
+                btn.textContent = 'Submit';
+                alert('Something went wrong. Please check your connection and try again.');
+                console.error('Form submission error:', err);
+            }
+        });
+    </script>
+    <script src="js/scripts.js"></script> 
+
+</body>
+</html>
