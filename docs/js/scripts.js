@@ -1,11 +1,87 @@
-window.addEventListener('load', function() {
+// --- Shared initialisation on DOM ready ---
+document.addEventListener('DOMContentLoaded', function() {
 
-    // --- Navigation: Hamburger + Mobile Dropdowns ---
+    // 1. LOAD SHARED HEADER & INITIALIZE MENU LOGIC
+    var headerPlaceholder = document.getElementById('header-placeholder');
+    if (headerPlaceholder) {
+        fetch('header.html')
+            .then(function(response) {
+                if (!response.ok) throw new Error('Header load failed');
+                return response.text();
+            })
+            .then(function(data) {
+                headerPlaceholder.innerHTML = data;
+                
+                // Set the active class styling automatically based on current page
+                setActiveNavigationLink();
+
+                // Run your interactive navigation menu script now that elements exist!
+                initializeNavigationMenu();
+            })
+            .catch(function(error) {
+                console.error('Error loading header:', error);
+            });
+    }
+
+    // 2. LOAD SHARED FOOTER
+    var footerPlaceholder = document.getElementById('footer-placeholder');
+    if (footerPlaceholder) {
+        fetch('footer.html')
+            .then(function(response) {
+                if (!response.ok) throw new Error('Footer load failed');
+                return response.text();
+            })
+            .then(function(data) {
+                footerPlaceholder.innerHTML = data;
+            })
+            .catch(function(error) {
+                console.error('Error loading footer:', error);
+            });
+    }
+
+    // 3. VOLUNTEER ROLES MODULE (Only runs if element exists on page)
+    var rolesContent = document.getElementById('roles-content');
+    if (rolesContent) {
+        fetch('roles.json')
+            .then(function(response) {
+                if (!response.ok) throw new Error('Could not load roles.json');
+                return response.json();
+            })
+            .then(function(roles) {
+                generateRoleContent(roles);
+                attachRoleClickListener();
+            })
+            .catch(function(error) {
+                console.error('Error loading roles:', error);
+                rolesContent.innerHTML = '<p style="padding: 20px; color: red; font-weight: bold;">Error: Failed to load opportunities. Please check the roles.json file.</p>';
+            });
+    }
+
+});
+
+
+// --- Helper: Dynamic Active Link Selector ---
+function setActiveNavigationLink() {
+    var currentPath = window.location.pathname.split("/").pop();
+    var currentPage = currentPath === "" ? "index.html" : currentPath;
+    var navLinks = document.querySelectorAll('#header-placeholder nav a');
+
+    navLinks.forEach(function(link) {
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+
+// --- Helper: Modularized Navigation Menu Controls ---
+function initializeNavigationMenu() {
     var menuToggle = document.querySelector('.menu-toggle');
     var navMenu = document.querySelector('nav');
 
     if (menuToggle && navMenu) {
-
         menuToggle.addEventListener('click', function(e) {
             e.stopPropagation();
             navMenu.classList.toggle('active');
@@ -49,49 +125,7 @@ window.addEventListener('load', function() {
             });
         });
     }
-
-    // --- End Navigation ---
-});
-
-
-// --- Shared initialisation on DOM ready ---
-document.addEventListener('DOMContentLoaded', function() {
-
-    // Load shared footer on all pages
-    var placeholder = document.getElementById('footer-placeholder');
-    if (placeholder) {
-        fetch('footer.html')
-            .then(function(response) {
-                if (!response.ok) throw new Error('Footer load failed');
-                return response.text();
-            })
-            .then(function(data) {
-                placeholder.innerHTML = data;
-            })
-            .catch(function(error) {
-                console.error('Error loading footer:', error);
-            });
-    }
-
-    // Volunteer roles — only runs if elements exist on the page
-    var rolesContent = document.getElementById('roles-content');
-    if (rolesContent) {
-        fetch('roles.json')
-            .then(function(response) {
-                if (!response.ok) throw new Error('Could not load roles.json');
-                return response.json();
-            })
-            .then(function(roles) {
-                generateRoleContent(roles);
-                attachRoleClickListener();
-            })
-            .catch(function(error) {
-                console.error('Error loading roles:', error);
-                rolesContent.innerHTML = '<p style="padding: 20px; color: red; font-weight: bold;">Error: Failed to load opportunities. Please check the roles.json file.</p>';
-            });
-    }
-
-});
+}
 
 
 // --- Volunteer role functions ---
@@ -155,21 +189,3 @@ function generateRoleContent(roles) {
         showRoleDetails(roles[0].id, firstButton);
     }
 }
-
-
-fetch('footer.html')
-    .then(function(response) {
-        if (!response.ok) throw new Error('Footer load failed');
-        return response.text();
-    })
-    .then(function(data) {
-        console.log('Footer length:', data.length);
-        console.log('Footer content:', data);
-        var placeholder = document.getElementById('footer-placeholder');
-        if (placeholder) {
-            placeholder.innerHTML = data;
-        }
-    })
-    .catch(function(error) {
-        console.error('Error loading footer:', error);
-    });
