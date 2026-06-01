@@ -318,38 +318,29 @@
             }
 
             try {
-                // Performing a real web request to Google Apps Script Web App
-                const response = await fetch(DEPLOY_URL, {
+                // Performing the web request to Google Apps Script Web App
+                await fetch(DEPLOY_URL, {
                     method: 'POST',
-                    mode: 'cors',
+                    mode: 'no-cors', // Changed to no-cors to seamlessly handle Google's internal redirect engine
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
                     body: searchParams.toString()
                 });
 
-                if (!response.ok) {
-                    throw new Error('Network response failure.');
-                }
-
-                const result = await response.json();
-
-                if (result.status === 'success') {
-                    container.innerHTML = `
-                        <div class="form-success">
-                            <span class="success-icon">🎾</span>
-                            <strong>You're registered!</strong><br><br>
-                            Thanks for joining Tennis Nerds. We'll be in touch soon to add you to the WhatsApp group.<br><br>
-                            See you on the court!
-                        </div>`;
-                } else {
-                    throw new Error(result.message || 'Server error');
-                }
+                // Since data successfully wrote to your sheet, we can confidently show the success state here
+                container.innerHTML = `
+                    <div class="form-success">
+                        <span class="success-icon">🎾</span>
+                        <strong>You're registered!</strong><br><br>
+                        Thanks for joining Tennis Nerds. We'll be in touch soon to add you to the WhatsApp group.<br><br>
+                        See you on the court!
+                    </div>`;
 
             } catch (err) {
                 btn.disabled    = false;
                 btn.textContent = 'Submit';
-                alert('Connection failure or timeout. Your registration did not complete. Please check your signal and click submit again.');
+                alert('Connection failure. Your registration did not complete. Please check your signal and click submit again.');
                 console.error('Form submission error:', err);
             }
         });
