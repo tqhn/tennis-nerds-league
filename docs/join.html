@@ -138,46 +138,44 @@
                     <p>Please fill out these quick details so we can get you registered and into the WhatsApp group. It only takes a minute! See you on the court!</p>
                 </div>
 
-                <!-- No action/method/target — submission handled by JS below -->
                 <form id="join-form">
                     
                     <div class="form-group">
                         <label for="first_name">First Name *</label>
-                        <input type="text" id="first_name" name="entry.283344662" required>
+                        <input type="text" id="first_name" name="firstName" required>
                     </div>
 
                     <div class="form-group">
                         <label for="last_name">Last Name *</label>
-                        <input type="text" id="last_name" name="entry.688013228" required>
+                        <input type="text" id="last_name" name="lastName" required>
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email ID *</label>
-                        <input type="email" id="email" name="entry.2123851158" required>
+                        <input type="email" id="email" name="email" required>
                     </div>
 
                     <div class="form-group">
                         <label for="phone">Phone Number *</label>
-                        <input type="text" id="phone" name="entry.68943770" required>
+                        <input type="text" id="phone" name="phone" required>
                     </div>
 
                     <div class="form-group">
                         <label for="wtn">What is your exact World Tennis Number (WTN Rating for singles/doubles)? *</label>
                         <p class="field-desc">If unknown, please log in to <a href="https://www.lta.org.uk/advantage-home/my-game/" target="_blank">LTA Advantage</a> to find it or type 'Unknown'</p>
-                        <input type="text" id="wtn" name="entry.193594857" required>
+                        <input type="text" id="wtn" name="wtn" required>
                     </div>
 
-                    <!-- UPDATED WITH YOUR UNIQUE ID -->
                     <div class="form-group">
                         <label for="lta_number">LTA Advantage Number</label>
                         <p class="field-desc">Highly recommended if you want to join our official LTA Box Leagues, ladders, or knockout tournaments. (Leave blank if you don't have one).</p>
-                        <input type="text" id="lta_number" name="entry.2038881745" placeholder="e.g. 102345678">
+                        <input type="text" id="lta_number" name="ltaNumber" placeholder="e.g. 102345678">
                     </div>
 
                     <div class="form-group">
                         <label for="skill_level">Skill Level *</label>
                         <p class="field-desc">Select from below that best matches your current game. (WTN ranges are based on official LTA/ITF mapping).</p>
-                        <select id="skill_level" name="entry.1996833352" required>
+                        <select id="skill_level" name="skillLevel" required>
                             <option value="" disabled selected>Select option...</option>
                             <option value="WTN 40-38 (Beginner) : This player is just starting to play, has limited experience and is still working primarily on getting the ball into play.">WTN 40-38 (Beginner)</option>
                             <option value="WTN 37-35 (Improver) : Able to judge ball flight and can sustain short rallies.">WTN 37-35 (Improver)</option>
@@ -193,60 +191,60 @@
                     <div class="form-group">
                         <label>Do you play tennis often? *</label>
                         <div class="radio-group">
-                            <label class="radio-option"><input type="radio" name="entry.1016415884" value="Once a week" required> Once a week</label>
-                            <label class="radio-option"><input type="radio" name="entry.1016415884" value="More than once a week"> More than once a week</label>
-                            <label class="radio-option"><input type="radio" name="entry.1016415884" value="Once every month"> Once every month</label>
-                            <label class="radio-option"><input type="radio" name="entry.1016415884" value="A few times a year"> A few times a year</label>
-                            <label class="radio-option"><input type="radio" name="entry.1016415884" value="Never played, absolute beginner"> Never played, absolute beginner</label>
+                            <label class="radio-option"><input type="radio" name="frequency" value="Once a week" required> Once a week</label>
+                            <label class="radio-option"><input type="radio" name="frequency" value="More than once a week"> More than once a week</label>
+                            <label class="radio-option"><input type="radio" name="frequency" value="Once every month"> Once every month</label>
+                            <label class="radio-option"><input type="radio" name="frequency" value="A few times a year"> A few times a year</label>
+                            <label class="radio-option"><input type="radio" name="frequency" value="Never played, absolute beginner"> Never played, absolute beginner</label>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="why_join">Why do you want to join Tennis Nerds?</label>
-                        <textarea id="why_join" name="entry.933894159"></textarea>
+                        <textarea id="why_join" name="whyJoin"></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="location">Where are you based? (Welwyn, Stevenage, Hertfordshire, London etc.) *</label>
                         <p class="field-desc">This helps us coordinate local play at the nearby park and also social group travel for pro tournaments like Queen's, Wimbledon etc!</p>
-                        <input type="text" id="location" name="entry.648855849" required>
+                        <input type="text" id="location" name="location" required>
                     </div>
 
                     <div class="form-group">
                         <label>How did you hear about us? *</label>
                         <div class="radio-group">
-                            <label class="radio-option"><input type="radio" name="entry.283336885" value="Instagram" required> Instagram</label>
-                            <label class="radio-option"><input type="radio" name="entry.283336885" value="Word of Mouth"> Word of Mouth</label>
-                            <label class="radio-option"><input type="radio" name="entry.283336885" value="Google"> Google</label>
-                            <label class="radio-option"><input type="radio" name="entry.283336885" value="Invited"> Invited</label>
-                            <label class="radio-option"><input type="radio" name="entry.283336885" value="Reddit"> Reddit</label>
+                            <label class="radio-option"><input type="radio" name="source" value="Instagram" required> Instagram</label>
+                            <label class="radio-option"><input type="radio" name="source" value="Word of Mouth"> Word of Mouth</label>
+                            <label class="radio-option"><input type="radio" name="source" value="Google"> Google</label>
+                            <label class="radio-option"><input type="radio" name="source" value="Invited"> Invited</label>
+                            <label class="radio-option"><input type="radio" name="source" value="Reddit"> Reddit</label>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>What's your priority? *</label>
                         <div class="radio-group">
-                            <label class="radio-option"><input type="radio" name="entry.1404988107" value="The Grind: Good few hours of hit." id="priority_grind" required> The Grind: Good few hours of hit.</label>
-                            <label class="radio-option"><input type="radio" name="entry.1404988107" value="The Social: Few hours hit and followed by a trip to pub/cafe." id="priority_social"> The Social: Few hours hit and followed by a trip to pub/cafe.</label>
-                            <label class="radio-option"><input type="radio" name="entry.1404988107" value="Both" id="priority_both"> Both</label>
+                            <label class="radio-option"><input type="radio" name="priority" value="The Grind: Good few hours of hit." id="priority_grind" required> The Grind: Good few hours of hit.</label>
+                            <label class="radio-option"><input type="radio" name="priority" value="The Social: Few hours hit and followed by a trip to pub/cafe." id="priority_social"> The Social: Few hours hit and followed by a trip to pub/cafe.</label>
+                            <label class="radio-option"><input type="radio" name="priority" value="Both" id="priority_both"> Both</label>
                         </div>
                     </div>
 
                     <div class="form-group conditional-field" id="hosting_box">
                         <label>Would you be willing to "Host" social sessions? *</label>
                         <div class="radio-group">
-                            <label class="radio-option"><input type="radio" name="entry.1217474000" value="Yes - I can lead the session and the pub trip."> Yes - I can lead the session and the pub trip.</label>
-                            <label class="radio-option"><input type="radio" name="entry.1217474000" value="No - I'll like to just play."> No - I'll like to just play.</label>
-                            <label class="radio-option"><input type="radio" name="entry.1217474000" value="Maybe - I can help out occasionally."> Maybe - I can help out occasionally.</label>
+                            <label class="radio-option"><input type="radio" name="hosting" value="Yes - I can lead the session and the pub trip."> Yes - I can lead the session and the pub trip.</label>
+                            <label class="radio-option"><input type="radio" name="hosting" value="No - I'll like to just play."> No - I'll like to just play.</label>
+                            <label class="radio-option"><input type="radio" name="hosting" value="Maybe - I can help out occasionally."> Maybe - I can help out occasionally.</label>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>Tennis Nerds Community Alerts? *</label>
-                        <p class="field-desc">Want to hear about our upcoming social sesssions, box league openings, and knockout tournaments?</p>
+                        <p class="field-desc">Want to hear about our upcoming social sessions, box league openings, and knockout tournaments?</p>
                         <div class="radio-group">
-                            <label class="radio-option"><input type="radio" name="entry.1644417381" value="Yes" required> Yes</label>
-                            <label class="radio-option"><input type="radio" name="entry.1644417381" value="No"> No</label>
+                            <label class="radio-option"><input type="radio" name="alerts" value="Yes" required> Yes</label>
+                            <label class="radio-option"><input type="radio" name="alerts" value="No"> No</label>
                         </div>
                     </div>
 
@@ -254,7 +252,7 @@
                         <label>Declaration and Consent *</label>
                         <div class="radio-group">
                             <label class="radio-option">
-                                <input type="checkbox" name="entry.1475801707" value="By signing up, I confirm I am 18+ and consent to data processing for administration, match coordination, and public leaderboard/results publication. I accept the group rules, privacy policy and assume all personal risk for participation." required>
+                                <input type="checkbox" name="consent" value="By signing up, I confirm I am 18+ and consent to data processing for administration, match coordination, and public leaderboard/results publication. I accept the group rules, privacy policy and assume all personal risk for participation." required>
                                 <span>By signing up, I confirm I am 18+ and consent to <a href="https://tqhn.github.io/tennis-nerds-league/privacy_policy.html" target="_blank">data processing</a> for administration, match coordination, and public leaderboard/results publication. I accept the <a href="TNCRulebook.html" target="_blank">group rules</a>, privacy policy and assume all personal risk for participation.</span>
                             </label>
                         </div>
@@ -303,36 +301,55 @@
             e.preventDefault();
 
             const form      = e.target;
-            const btn       = document.getElementById('submit-btn');
+            const btn        = document.getElementById('submit-btn');
             const container = document.querySelector('.join-form-container');
 
-            // Basic client-side validation already handled by `required` attributes.
-            // Disable button to prevent double-submit.
             btn.disabled    = true;
             btn.textContent = 'Submitting…';
 
-            const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfaBiGWHBvGYVIXNhWPffa0pb-NuMT_CkdPfyxRXj8ZDwWJQQ/formResponse';
+            // PASTE YOUR GOOGLE WEB APP URL DEPLOYMENT LINK HERE:
+            const DEPLOY_URL = 'https://script.google.com/macros/s/AKfycbyzUHezZsHfZ3Pogiu6lDWH1XwrkNAM2GtaX9qZaVH9MNdaDAukIIBtLT67tbNWKdUE/exec';
+
+            // Serialize data properly for an application/x-www-form-urlencoded POST
+            const formData = new FormData(form);
+            const searchParams = new URLSearchParams();
+            for (const pair of formData) {
+                searchParams.append(pair[0], pair[1]);
+            }
 
             try {
-                await fetch(FORM_URL, {
+                // Performing a real web request to Google Apps Script Web App
+                const response = await fetch(DEPLOY_URL, {
                     method: 'POST',
-                    mode:   'no-cors',   // Required — Google blocks CORS on formResponse
-                    body:   new FormData(form)
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: searchParams.toString()
                 });
 
-                // no-cors means we can't read the response status, but data IS sent.
-                container.innerHTML = `
-                    <div class="form-success">
-                        <span class="success-icon">🎾</span>
-                        <strong>You're registered!</strong><br><br>
-                        Thanks for joining Tennis Nerds. We'll be in touch soon to add you to the WhatsApp group.<br><br>
-                        See you on the court!
-                    </div>`;
+                if (!response.ok) {
+                    throw new Error('Network response failure.');
+                }
+
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    container.innerHTML = `
+                        <div class="form-success">
+                            <span class="success-icon">🎾</span>
+                            <strong>You're registered!</strong><br><br>
+                            Thanks for joining Tennis Nerds. We'll be in touch soon to add you to the WhatsApp group.<br><br>
+                            See you on the court!
+                        </div>`;
+                } else {
+                    throw new Error(result.message || 'Server error');
+                }
 
             } catch (err) {
                 btn.disabled    = false;
                 btn.textContent = 'Submit';
-                alert('Something went wrong. Please check your connection and try again.');
+                alert('Connection failure or timeout. Your registration did not complete. Please check your signal and click submit again.');
                 console.error('Form submission error:', err);
             }
         });
