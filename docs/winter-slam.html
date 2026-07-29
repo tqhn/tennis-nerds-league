@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Nerds Winter Slam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="dtc-favicon.png">
+    <style>
+        .league-intro {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1b365d 0%, #0d1b2a 100%); /* Deep icy blue to dark slate */
+            color: white;
+            border-radius: 12px 12px 0 0;
+            margin-top: 20px;
+        }
+        .league-intro h2 { font-size: 3em; margin-bottom: 10px; color: #78A93F; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; border: none; }
+        .trophy-subtitle { font-size: 1.3em; color: #bdc3c7; display: block; margin-bottom: 20px; }
+        
+        .history-box { 
+            background-color: #f0f4f0; 
+            border-bottom: 3px solid #78A93F; 
+            padding: 30px; 
+            border-radius: 0 0 12px 12px; 
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .history-box h4 { color: #1a2a3a; margin-top: 0; text-transform: uppercase; font-size: 0.9em; letter-spacing: 2px; }
+        .history-box p { font-style: italic; color: #444; max-width: 850px; margin: 0 auto; font-size: 1.05em; line-height: 1.8; }
+
+        .round-cards { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px; justify-content: center; }
+        .round-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-top: 5px solid #78A93F;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            width: calc(25% - 20px);
+            min-width: 230px;
+            text-align: center;
+        }
+        .round-card h3 { color: #2c3e50; margin: 0 0 15px 0; font-size: 1.1em; }
+        .deadline { color: #e74c3c; font-weight: bold; display: block; margin-top: 10px; }
+
+        .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+        .info-section { background: white; padding: 25px; border-radius: 8px; border: 1px solid #eee; }
+        .info-section h4 { border-bottom: 2px solid #78A93F; padding-bottom: 10px; margin-top: 0; color: #2c3e50; text-transform: uppercase; }
+
+        .golden-rule { background-color: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; border-radius: 4px; margin: 30px 0; }
+
+        .cta-buttons { display: flex; gap: 15px; justify-content: center; margin-top: 30px; }
+        .btn { padding: 14px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase; }
+        .primary { background: #78A93F; color: white; }
+        .secondary { border: 2px solid #78A93F; color: #78A93F; }
+
+        @media (max-width: 768px) {
+            .round-card { width: 100%; }
+            .rules-grid { grid-template-columns: 1fr; }
+            .league-intro h2 { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="header-placeholder"></div>
+        
+        <main>
+            <div class="league-intro">
+                <span style="font-size: 3.5em; display: block; margin-bottom: 10px;">❄️</span>
+                <h2>Tennis Nerds Winter Slam</h2>
+                <span class="trophy-subtitle">The Tennis Nerds Indoor & Early Season Opener</span>
+                <p style="color: #78A93F; font-weight: bold; margin-top: -10px; font-size: 1.1em; letter-spacing: 0.5px;">
+                    Kick off the competitive year and shake off the winter rust.
+                </p>
+                <div class="cta-buttons">
+                    <a href="https://competitions.lta.org.uk" target="_blank" class="btn primary">Enter Tournament</a>
+                    <a href="winter-fixtures.html" target="_blank" class="btn secondary">Fixtures Matrix</a>
+                </div>
+            </div>
+
+            <div class="history-box">
+                <h4>Shatter the Ice</h4>
+                <p>
+                    "The Winter Slam is designed to keep your game sharp when the weather turns cold. 
+                    Test your tactical discipline, battle through the indoor hard-court circuits, and claim 
+                    the first title of the calendar year."
+                </p>
+            </div>
+
+            <h3>The Road to the Title</h3>
+            <div class="round-cards">
+                <div class="round-card"> 
+                    <h3>Group Stage</h3>
+                    <p>Round-robin format</p>
+                    <span class="deadline">Complete by: TBC</span>
+                </div>
+                <div class="round-card">
+                    <h3>Quarter-Finals</h3>
+                    <p>The Last 8</p>
+                    <span class="deadline">Complete by: TBC</span>
+                </div>
+                <div class="round-card">
+                    <h3>Semi-Finals</h3>
+                    <p>The Final Four</p>
+                    <span class="deadline">Complete by: TBC</span>
+                </div>
+                <div class="round-card">
+                    <h3>Grand Final</h3>
+                    <p>Winter Slam Champion</p>
+                    <span class="deadline">Complete by: TBC</span>
+                </div>
+            </div>
+
+            <div class="rules-grid">
+                <div class="info-section" id="tournament-format-box"></div>
+                <div class="info-section" id="result-entry-box"></div>
+            </div>
+
+            <h3>Fixtures Matrix</h3>
+            <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #eee; display: inline-block; max-width: 100%;">
+                <img src="images/autumn-fixtures.png" alt="Fixtures" style="width: 100%; height: auto; border-radius: 4px;">
+            </div>
+
+            <div class="golden-rule">
+                <strong>🛡️ The Golden Rule:</strong> 
+                The bracket must keep moving. Matches not completed by the final deadline without an approved extension will be resolved via administrator coin-toss.
+            </div>
+        </main>
+
+        <div id="footer-placeholder"></div>
+    </div>
+    <script src="js/scripts.js"></script>
+    <script src="js/tournament-rules.js"></script>
+            
+</body>
+</html>
