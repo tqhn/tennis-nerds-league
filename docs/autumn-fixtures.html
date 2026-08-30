@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>League Fixtures</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: #f2f2f2;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 24px;
+            padding: 24px;
+        }
+        .table-wrapper {
+            display: inline-block;
+            min-width: 0;
+            max-width: 100%;
+            background: #ffffff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+        }
+        .table-scroll {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            max-width: 100%;
+        }
+        .fixtures-header {
+            padding: 18px 16px 14px;
+            text-align: center;
+            background: #ffffff;
+        }
+        .fixtures-league {
+            font-size: 0.78em;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #4a7c2f;
+            margin-bottom: 6px;
+        }
+        .fixtures-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #222;
+        }
+        .fixtures-group-name {
+            font-size: 1.0em;
+            font-weight: 600;
+            color: #666;
+            margin-top: 4px;
+        }
+        .fixtures-hint {
+            font-size: 0.75em;
+            font-weight: 600;
+            color: #4a7c2f;
+            margin-top: 10px;
+        }
+        
+        table.data-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        table.data-table th {
+            background: #4a7c2f;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            padding: 10px 12px;
+            min-width: 95px;
+            text-align: center;
+            white-space: nowrap;
+        }
+        table.data-table th.mw-header {
+            position: sticky;
+            left: 0;
+            z-index: 3;
+            background: #3c6525;
+            min-width: 130px;
+            text-align: left;
+            padding: 10px 14px;
+        }
+        table.data-table td.mw-cell {
+            position: sticky;
+            left: 0;
+            z-index: 2;
+            background: #f4f8f1;
+            font-weight: 700;
+            color: #222;
+            text-align: left;
+            padding: 12px 14px;
+            white-space: nowrap;
+            box-shadow: 2px 0 4px rgba(0,0,0,0.06);
+        }
+        table.data-table td {
+            font-weight: 600;
+            font-size: 0.95em;
+            color: #333;
+            padding: 12px;
+            text-align: center;
+            white-space: nowrap;
+            background: #ffffff;
+        }
+        table.data-table tbody tr:nth-child(even) td:not(.mw-cell) {
+            background: #f9fbf7;
+        }
+        table.data-table td.bye-cell {
+            color: #bbb;
+            font-style: italic;
+            background: #f5f5f5;
+        }
+        .deadline-sub {
+            display: block;
+            font-size: 0.72em;
+            font-weight: 500;
+            text-transform: none;
+            opacity: 0.9;
+            margin-top: 2px;
+        }
+
+        .bracket-scroll {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            max-width: 100%;
+            padding: 0 10px 10px;
+        }
+        .bracket-container {
+            display: flex;
+            padding: 20px 10px;
+            gap: 30px;
+            justify-content: flex-start;
+            align-items: center;
+            background: #ffffff;
+            min-width: max-content;
+        }
+        .bracket-round {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 220px;
+            flex-shrink: 0;
+            gap: 20px;
+        }
+        .bracket-round-title {
+            text-align: center;
+            font-size: 0.85em;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #4a7c2f;
+            margin-bottom: 12px;
+            letter-spacing: 0.05em;
+        }
+        .bracket-match {
+            background: #f9fbf7;
+            border: 1px solid #d4e2cd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+        }
+        .bracket-player {
+            padding: 10px 14px;
+            font-size: 0.9em;
+            font-weight: 600;
+            color: #333;
+            background: #ffffff;
+            display: flex;
+            justify-content: space-between;
+        }
+        .bracket-player:first-child {
+            border-bottom: 1px solid #eef2ec;
+        }
+        .bracket-meta {
+            background: #f4f8f1;
+            padding: 5px 10px;
+            font-size: 0.7em;
+            font-weight: 600;
+            color: #555;
+            text-align: center;
+            border-top: 1px solid #d4e2cd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container"><div class="table-wrapper" id="table-group_stage">
+<div class="fixtures-header">
+<div class="fixtures-league">Tennis Nerds Autumn Showdown</div>
+<div class="fixtures-title">Fixtures Matrix</div>
+<div class="fixtures-group-name">Group Stage</div>
+<div class="fixtures-hint">&#8595; Find your row, then read across for your round opponents & deadlines</div>
+</div>
+<div class="table-scroll">
+<table class="data-table group-table">
+<thead><tr>
+<th class="mw-header">Player</th>
+<th>R1<span class="deadline-sub">Play before:<br>07/09/2026</span></th>
+<th>R2<span class="deadline-sub">Play before:<br>21/09/2026</span></th>
+<th>R3<span class="deadline-sub">Play before:<br>28/09/2026</span></th>
+<th>R4<span class="deadline-sub">Play before:<br>05/10/2026</span></th>
+<th>R5<span class="deadline-sub">Play before:<br>19/10/2026</span></th>
+<th>R6<span class="deadline-sub">Play before:<br>02/11/2026</span></th>
+<th>R7<span class="deadline-sub">Play before:<br>09/11/2026</span></th>
+</tr></thead><tbody>
+<tr>
+<td class="mw-cell">Malachi</td>
+<td>vs Ben <span class="deadline-sub">(R1)</span></td>
+<td>vs Krzysztof <span class="deadline-sub">(R2)</span></td>
+<td>vs Henry <span class="deadline-sub">(R3)</span></td>
+<td>vs Ray <span class="deadline-sub">(R4)</span></td>
+<td>vs Tim <span class="deadline-sub">(R5)</span></td>
+<td>vs Piero <span class="deadline-sub">(R6)</span></td>
+<td>vs Tariq <span class="deadline-sub">(R7)</span></td>
+</tr>
+<tr>
+<td class="mw-cell">Krzysztof</td>
+<td>vs Tariq <span class="deadline-sub">(R1)</span></td>
+<td>vs Malachi <span class="deadline-sub">(R2)</span></td>
+<td>vs Ben <span class="deadline-sub">(R3)</span></td>
+<td>vs Henry <span class="deadline-sub">(R4)</span></td>
+<td>vs Ray <span class="deadline-sub">(R5)</span></td>
+<td>vs Tim <span class="deadline-sub">(R6)</span></td>
+<td>vs Piero <span class="deadline-sub">(R7)</span></td>
+</tr>
+<tr>
+<td class="mw-cell">Henry</td>
+<td>vs Piero <span class="deadline-sub">(R1)</span></td>
+<td>vs Tariq <span class="deadline-sub">(R2)</span></td>
+<td>vs Malachi <span class="deadline-sub">(R3)</span></td>
+<td>vs Krzysztof <span class="deadline-sub">(R4)</span></td>
+<td>vs Ben <span class="deadline-sub">(R5)</span></td>
+<td>vs Ray <span class="deadline-sub">(R6)</span></td>
+<td>vs Tim <span class="deadline-sub">(R7)</span></td>
+</tr>
+<tr>
+<td class="mw-cell">Ray</td>
+<td>vs Tim <span class="deadline-sub">(R1)</span></td>
+<td>vs Piero <span class="deadline-sub">(R2)</span></td>
+<td>vs Tariq <span class="deadline-sub">(R3)</span></td>
+<td>vs Malachi <span class="deadline-sub">(R4)</span></td>
+<td>vs Krzysztof <span class="deadline-sub">(R5)</span></td>
+<td>vs Henry <span class="deadline-sub">(R6)</span></td>
+<td>vs Ben <span class="deadline-sub">(R7)</span></td>
+</tr>
+<tr>
+<td class="mw-cell">Tim</td>
+<td>vs Ray <span class="deadline-sub">(R1)</span></td>
+<td>vs Ben <span class="deadline-sub">(R2)</span></td>
+<td>vs Piero <span class="deadline-sub">(R3)</span></td>
+<td>vs Tariq <span class="deadline-sub">(R4)</span></td>
+<td>vs Malachi <span class="deadline-sub">(R5)</span></td>
+<td>vs Krzysztof <span class="deadline-sub">(R6)</span></td>
+<td>vs Henry <span class="deadline-sub">(R7)</span></td>
+</tr>
+<tr>
+<td class="mw-cell">Piero</td>
+<td>vs Henry <span class="deadline-sub">(R1)</span></td>
+<td>vs Ray <span class="deadline-sub">(R2)</span></td>
+<td>vs Tim <span class="deadline-sub">(R3)</span></td>
+<td>vs Ben <span class="deadline-sub">(R4)</span></td>
+<td>vs Tariq <span class="deadline-sub">(R5)</span></td>
+<td>vs Malachi <span class="deadline-sub">(R6)</span></td>
+<td>vs Krzysztof <span class="deadline-sub">(R7)</span></td>
+</tr>
+<tr>
+<td class="mw-cell">Tariq</td>
+<td>vs Krzysztof <span class="deadline-sub">(R1)</span></td>
+<td>vs Henry <span class="deadline-sub">(R2)</span></td>
+<td>vs Ray <span class="deadline-sub">(R3)</span></td>
+<td>vs Tim <span class="deadline-sub">(R4)</span></td>
+<td>vs Piero <span class="deadline-sub">(R5)</span></td>
+<td>vs Ben <span class="deadline-sub">(R6)</span></td>
+<td>vs Malachi <span class="deadline-sub">(R7)</span></td>
+</tr>
+<tr>
+<td class="mw-cell">Ben</td>
+<td>vs Malachi <span class="deadline-sub">(R1)</span></td>
+<td>vs Tim <span class="deadline-sub">(R2)</span></td>
+<td>vs Krzysztof <span class="deadline-sub">(R3)</span></td>
+<td>vs Piero <span class="deadline-sub">(R4)</span></td>
+<td>vs Henry <span class="deadline-sub">(R5)</span></td>
+<td>vs Tariq <span class="deadline-sub">(R6)</span></td>
+<td>vs Ray <span class="deadline-sub">(R7)</span></td>
+</tr>
+</tbody></table></div></div><div class="table-wrapper" id="table-knockout">
+<div class="fixtures-header">
+<div class="fixtures-league">Tennis Nerds Autumn Showdown</div>
+<div class="fixtures-title">Knockout Bracket</div>
+</div>
+<div class="bracket-scroll">
+<div class="bracket-container">
+<div class="bracket-round">
+<div class="bracket-round-title">Semifinals</div>
+<div class="bracket-match">
+<div class="bracket-player"><span>1st Group Stage</span></div>
+<div class="bracket-player"><span>4th Group Stage</span></div>
+<div class="bracket-meta">Play before:<br>16/11/2026 @ 7:00 PM</div>
+</div>
+<div class="bracket-match">
+<div class="bracket-player"><span>2nd Group Stage</span></div>
+<div class="bracket-player"><span>3th Group Stage</span></div>
+<div class="bracket-meta">Play before:<br>16/11/2026 @ 7:00 PM</div>
+</div>
+</div>
+<div class="bracket-round">
+<div class="bracket-round-title">Final</div>
+<div class="bracket-match">
+<div class="bracket-player"><span>Semifinal 1 Winner</span></div>
+<div class="bracket-player"><span>Semifinal 2 Winner</span></div>
+<div class="bracket-meta">Play before:<br>22/11/2026 @ 11:00 AM</div>
+</div>
+</div>
+</div></div></div></div>
+</body>
+</html>
