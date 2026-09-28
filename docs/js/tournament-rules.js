@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <h4>Results & WTN</h4>
         <ul>
             <li><strong>LTA Verified:</strong> Official LTA grade match contributes towards your WTN rating.</li>
-            <li><strong>Score Reporting:</strong> Winners are required to input match results into the LTA portal within 24 hours.</li>
+            <li><strong>Score Reporting:</strong> Winners are required to submit match results using this <a href="https://forms.gle/PyRd8Swz5D9iQWkt5" target="_blank">form</a> within 24 hours.</li>
             <li><strong>Dispute Resolution:</strong> In the event of a scoring dispute during a match, players should follow LTA self-officiating principles (e.g., if in doubt, the ball is 'in'). For administrative disputes, the decision of the Tennis Nerds committee is final.</li>
         </ul>
     `;
