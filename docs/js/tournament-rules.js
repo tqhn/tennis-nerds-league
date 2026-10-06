@@ -3,12 +3,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const formatHTML = `
         <h4>Tournament Format</h4>
         <ul>
-            <li><strong>Eligibility:</strong> Open singles tournament for all adult players.</li>
-            <li><strong>Draw:</strong> Group stage (round-robin format) followed by knockout bracket.</li>
+            <li><strong>Eligibility:</strong> Open singles tournament for adult players.</li>
+            <li><strong>Draw:</strong> Depending on the number of entries, a group stage (round-robin format) may be held followed by a knockout + consolation bracket.</li>
             <li><strong>Match Scoring:</strong> Best of 3 standard sets (A Match tie-break can be played at 1 set all if both players agreed).</li>
             <li><strong>Scheduling:</strong> Self-arranged matches coordinated directly between competitors.</li>
-            <li><strong>Rules:</strong> Full rules and on-court conduct, see the <a href="TNCRulebook.html" target="_blank">TNC Rulebook</a></li>
-            
+            <li><strong>Safeguarding:</strong> Further on-court conduct & safeguarding, see the <a href="TNCRulebook.html" target="_blank">TNC Rulebook</a></li>           
         </ul>
     `;
 
