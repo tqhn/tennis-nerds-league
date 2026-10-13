@@ -12,12 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         <h4>Venues & Hosting Rules</h4>
         <ul>
-            <li><strong>Location / Venue:</strong> Matches are played across local tennis courts/clubs.
-                <ul>
-                    <li><strong>North London Circuit:</strong> Postcodes N1–N22, NW1–NW5, NW7, NW8, NW11 & EN4–EN5</li>
-                    <li><strong>Hertfordshire Circuit:</strong> Postcodes AL, SG & EN6–EN11</li>
-                </ul>
-            </li>
+            <li><strong>Location / Venue:</strong> Matches are played across the regional courts/clubs within your dedicated Tennis Nerds circuit. Click to view circuit maps: <a href="https://raw.githubusercontent.com/tqhn/tennis-nerds-league/main/docs/images/Tennis%20Nerds%20Herts%20Circuit%20Map.jpeg" target="_blank">Hertfordshire</a> or <a href="https://raw.githubusercontent.com/tqhn/tennis-nerds-league/main/docs/images/Tennis%20Nerds%20North%20London%20Circuit%20Map.jpeg" target="_blank">North London</a>.</li>
             <li><strong>Home & Away Setup:</strong> The top/first-named player on the draw fixture is designated as the "Home" player. The Home player is responsible for providing the court and supplying a tin of new or near-new tennis balls.</li>
             <li>If the Home player cannot provide a court in the county, they concede home advantage. The Away player then takes over as the host, unless agreed otherwise.</li>
         </ul>
