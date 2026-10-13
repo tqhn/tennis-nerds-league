@@ -60,6 +60,18 @@
             .round-card { width: 100%; }
             .rules-grid { grid-template-columns: 1fr; }
             .league-intro h2 { font-size: 2em; }
+            
+            /* Add these lines for the buttons */
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .cta-buttons .btn {
+                text-align: center;
+                width: 100%;
+                box-sizing: border-box;
+            }
         }
     </style>
 </head>
@@ -114,9 +126,9 @@
                 </div>
             </div>
 
+            <h3>Competition Guidelines & Rules</h3>
             <div class="rules-grid">
                 <div class="info-section" id="tournament-format-box"></div>
-                <div class="info-section" id="result-entry-box"></div>
             </div>
 
             <h3>Fixtures Matrix</h3>
