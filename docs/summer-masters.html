@@ -55,6 +55,12 @@
         .btn { padding: 14px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase; }
         .primary { background: #78A93F; color: white; }
         .secondary { border: 2px solid #78A93F; color: #78A93F; }
+        /* Reduce list padding so text sits further to the left */
+        .info-section ul, 
+        .info-section ol {
+            padding-left: 10px; /* Adjust this number (e.g., 15px or 10px) to control how far left it goes */
+            margin-left: 0;
+        }
 
         @media (max-width: 768px) {
             .round-card { width: 100%; }
