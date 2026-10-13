@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const formatHTML = `
         <ol>
             <li>
-                <strong>Tournament Format</strong>
+                <h4>Tournament Format</h4>
                 <ol type="a">
-                    <li><strong>Eligibility:</strong> Open Singles for adult players, players must have an LTA Advantage account with active WTN rating.</li>
+                    <li><strong>Eligibility:</strong> Open Singles for adult players (all skill levels), players must have an LTA Advantage account with active WTN rating.</li>
                     <li><strong>Draw Setup:</strong> Depending on number of entries, a group stage (round-robin) may be held followed by a knockout + consolation bracket.</li>
                     <li><strong>Seeding:</strong> Seeds are determined strictly by players' official World Tennis Number (WTN) ratings & rankings at the time of the draw. Top seeds are placed on opposite brackets/groups to ensure a balanced draw. Unseeded spots are placed randomly via draw software.</li>
                     <li><strong>Match Scoring:</strong> Best of 3 standard sets. A 10-point Match Tie-Break can replace the 3rd set if both players agree before or during the match.</li>
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
             </li>
 
             <li>
-                <strong>Venues & Hosting Rules</strong>
+                <h4>Venues & Hosting Rules</h4>
                 <ol type="a">
                     <li><strong>Location / Venue:</strong> Matches are played across the regional courts/clubs within your dedicated Tennis Nerds circuit. Click to view circuit maps: <a href="https://raw.githubusercontent.com/tqhn/tennis-nerds-league/main/docs/images/Tennis%20Nerds%20Herts%20Circuit%20Map.jpeg" target="_blank">Hertfordshire</a> or <a href="https://raw.githubusercontent.com/tqhn/tennis-nerds-league/main/docs/images/Tennis%20Nerds%20North%20London%20Circuit%20Map.jpeg" target="_blank">North London</a>.</li>
                     <li><strong>Home & Away Setup:</strong> The top/first-named player on the draw fixture is designated as the "Home" player. The Home player is responsible for providing the court and supplying a tin of new or near-new tennis balls.</li>
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
             </li>
 
             <li>
-                <strong>Prizes & Recognition</strong>
+                <h4>Prizes & Recognition</h4>
                 <ol type="a">
                     <li><strong>The Champion Trophy:</strong> The ultimate winner of the main draw takes home the engraved Tennis Nerds Champion Trophy. <em>(Note: Trophy cost to be split among all nerds entering the tournament)</em>.</li>
                     <li><strong>WTN Points & Bragging Rights:</strong> All match wins count towards your official World Tennis Number (WTN) rating. Winners of other/consolation brackets earn full nerds circuit recognition and bragging rights.</li>
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
             </li>
 
             <li>
-                <strong>Results & Disputes</strong>
+                <h4>Results & Disputes</h4>
                 <ol type="a">
                     <li><strong>Score Submission:</strong> The winner is responsible for submitting match scores within 24 hours via the google form: <a href="https://forms.gle/PyRd8Swz5D9iQWkt5" target="_blank">https://forms.gle/PyRd8Swz5D9iQWkt5</a></li>
                     <li><strong>On-Court Scoring Disputes:</strong> Follow standard LTA self-officiating principles (e.g., if in doubt, the ball is called 'IN').</li>
