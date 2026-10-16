@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archived Tables & Results | Tennis Nerds</title>
+    <meta name="description" content="Browse past standings, group tables, and match histories for Tennis Nerds leagues and tournaments.">
+    <link rel="canonical" href="https://www.tennisnerds.org/archived-tables.html">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="dtc-favicon.png">
+
+    <style>
+        .league-intro {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1b365d 0%, #0d1b2a 100%);
+            color: white;
+            border-radius: 12px 12px 0 0;
+            margin-top: 20px;
+        }
+        .league-intro h2 { 
+            font-size: 2.8em; 
+            margin-bottom: 10px; 
+            color: #78A93F; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            font-weight: 700; 
+            border: none; 
+        }
+        .trophy-subtitle { 
+            font-size: 1.2em; 
+            color: #bdc3c7; 
+            display: block; 
+            margin-bottom: 10px; 
+        }
+
+        .archive-section {
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+
+        .archive-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .archive-card {
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-left: 5px solid #78A93F;
+            border-radius: 8px;
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            color: #2c3e50;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .archive-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+            border-left-color: #1b365d;
+        }
+
+        .archive-title {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-sql {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+
+        .badge-lta {
+            background-color: #e3f2fd;
+            color: #1565c0;
+            border: 1px solid #bbdefb;
+        }
+
+        @media (max-width: 768px) {
+            .league-intro h2 { font-size: 2em; }
+            .archive-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Placeholder -->
+        <div id="header-placeholder"></div>
+        
+        <main>
+            <div class="league-intro">
+                <span style="font-size: 3.5em; display: block; margin-bottom: 10px;">📊</span>
+                <h2>Archived Tables</h2>
+                <span class="trophy-subtitle">Past Standings & Match Results</span>
+            </div>
+
+            <div class="archive-section">
+                <div class="archive-grid">
+                    
+                    <!-- Internal SQL Pages -->
+                    <a href="inaugural_round_2025-26.html" class="archive-card">
+                        <span class="archive-title">Inaugural Round Winter 2025–26</span>
+                        <span class="badge badge-sql">Standings & Results</span>
+                    </a>
+
+                    <a href="Round_1_2026.html" class="archive-card">
+                        <span class="archive-title">Nerds League Round 1 Winter 2026</span>
+                        <span class="badge badge-sql">Standings & Results</span>
+                    </a>
+
+                    <a href="Round_2_2026.html" class="archive-card">
+                        <span class="archive-title">Nerds League Round 2 Spring 2026</span>
+                        <span class="badge badge-sql">Standings & Results</span>
+                    </a>
+
+                    <!-- External LTA Official Links -->
+                    <a href="https://competitions.lta.org.uk/box-ladder/97195625-7ac3-4b15-b1c5-6577d4e96964/event/2/round/1" target="_blank" rel="noopener noreferrer" class="archive-card">
+                        <span class="archive-title">Nerds League Round 3 Summer 2026</span>
+                        <span class="badge badge-lta">LTA Official ↗</span>
+                    </a>
+
+                    <a href="https://competitions.lta.org.uk/tournament/6af31ba0-d773-4b00-b07e-be5934b07ff4" target="_blank" rel="noopener noreferrer" class="archive-card">
+                        <span class="archive-title">Tennis Nerds Autumn Showdown 2026 (Graded Tournament)</span>
+                        <span class="badge badge-lta">LTA Official ↗</span>
+                    </a>
+
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Placeholder -->
+        <div id="footer-placeholder"></div>
+    </div>
+
+    <script src="js/scripts.js"></script>
+</body>
+</html>
