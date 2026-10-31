@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>The Nerds Race | Herts & North London Standings</title>
+    <meta name="description" content="Track live leaderboards, accumulated circuit points, and official standings for the Tennis Nerds Race across Hertfordshire and North London.">
+    <link rel="canonical" href="https://tennisnerds.org">
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="The Nerds Race | Herts & North London Standings">
+    <meta property="og:description" content="Track regional season-long standings for Herts and North London tournaments, and see who is crowned Nerds Race Champion at the end of the season.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tennisnerds.org">
+    
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="dtc-favicon.png">
+    
+    <style>
+        .league-intro {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1b365d 0%, #0d1b2a 100%);
+            color: white;
+            border-radius: 12px 12px 0 0;
+            margin-top: 20px;
+        }
+        .league-intro h2 { font-size: 3em; margin-bottom: 10px; color: #78A93F; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; border: none; }
+        .trophy-subtitle { font-size: 1.3em; color: #bdc3c7; display: block; margin-bottom: 20px; }
+        
+        .history-box { 
+            background-color: #f0f4f0; 
+            border-bottom: 3px solid #78A93F; 
+            padding: 30px; 
+            border-radius: 0 0 12px 12px; 
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .history-box h4 { color: #1a2a3a; margin-top: 0; text-transform: uppercase; font-size: 0.9em; letter-spacing: 2px; }
+        .history-box p { font-style: italic; color: #444; max-width: 850px; margin: 0 auto; font-size: 1.05em; line-height: 1.8; }
+
+        /* Section Headings for Regions */
+        .region-heading {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            color: #1b365d;
+            font-size: 1.5em;
+        }
+
+        /* ATP Style Leaderboard Table Styles */
+        .table-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            margin-bottom: 35px;
+            overflow-x: auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .race-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Montserrat', sans-serif;
+            text-align: left;
+        }
+        .race-table th {
+            background-color: #f8f9fa;
+            color: #1a2a3a;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            padding: 15px;
+            border-bottom: 2px solid #ddd;
+        }
+        .race-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            color: #333;
+            font-size: 0.95em;
+            vertical-align: middle;
+        }
+        .race-table tr:hover {
+            background-color: #fafdff;
+        }
+        .rank-col { font-weight: 700; color: #1a2a3a; width: 60px; text-align: center; }
+        .player-col { font-weight: 700; color: #2c3e50; }
+        .points-col { font-weight: 700; color: #1b365d; font-size: 1.1em; background-color: #fdfdfd; }
+        .event-col { color: #7f8c8d; text-align: center; }
+        
+        .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 10px; }
+        .info-section { background: white; padding: 25px; border-radius: 8px; border: 1px solid #eee; margin-bottom: 20px; }
+        .info-section h4 { border-bottom: 2px solid #78A93F; padding-bottom: 10px; margin-top: 0; color: #2c3e50; text-transform: uppercase; }
+
+        .golden-rule { background-color: #fff3cd; border-left: 5px solid #ffc107; padding: 20px; border-radius: 4px; margin: 30px 0; font-family: 'Montserrat', sans-serif; color: #333; line-height: 1.6; }
+
+        .info-section ul, 
+        .info-section ol {
+            padding-left: 15px;
+            margin-left: 0;
+        }
+        .info-section li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+
+        /* Year switcher (generated page) */
+        .year-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 30px 0 5px; }
+        .year-tab {
+            font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.95em;
+            padding: 10px 22px; border-radius: 30px; cursor: pointer;
+            border: 2px solid #1b365d; background: white; color: #1b365d; letter-spacing: 1px;
+        }
+        .year-tab:hover { background: #f0f4f0; }
+        .year-tab.active { background: #1b365d; color: white; }
+        .year-panel { display: none; }
+        .year-panel.active { display: block; }
+        .updated-note { font-size: 0.8em; color: #7f8c8d; margin: 0 0 10px; }
+        .event-list { font-size: 0.85em; line-height: 1.5; }
+        .no-data td { color: #aaa; }
+
+        @media (max-width: 768px) {
+            .rules-grid { grid-template-columns: 1fr; }
+            .league-intro h2 { font-size: 2em; }
+            .race-table th, .race-table td { padding: 10px 8px; font-size: 0.85em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="header-placeholder"></div>
+        
+        <main>
+            <!-- Header Section -->
+            <div class="league-intro">
+                <span style="font-size: 3.5em; display: block; margin-bottom: 10px;">🏆</span>
+                <h2>The Nerds Race</h2>
+                <span class="trophy-subtitle">Official Circuit Standings</span>
+                <p style="color: #78A93F; font-weight: bold; margin-top: -10px; font-size: 1.1em; letter-spacing: 0.5px;">
+                    Track your ranking across Hertfordshire & North London regional majors.
+                </p>
+            </div>
+
+            <!-- Intro Quote -->
+            <div class="history-box">
+                <h4>The Journey to Commitment & Consistency</h4>
+                <p>
+                    "The Nerds Race tracks your competitive consistency across the calendar year. 
+                    Every match played in our seasonal majors builds your total score. When the Autumn Showdown 
+                    wraps up, the player at the top of each regional table is crowned our year-end Nerds Race Champion."
+                </p>
+            </div>
+
+            <!-- NERDS_RACE_START -->
+            <div class="year-tabs"><button class="year-tab" data-year="2027">2027</button><button class="year-tab active" data-year="2026">2026</button></div>
+            <p class="updated-note">Last updated: 31 Oct 2026</p>
+            <div class="year-panel" data-year="2027">
+                <h3 class="region-heading">📍 Hertfordshire Circuit (2027 Standings)</h3>
+                <div class="table-container">
+                    <table class="race-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">Rank</th>
+                                <th>Player</th>
+                                <th style="text-align: center;">Tournaments Played</th>
+                                <th style="text-align: center;">Current Event</th>
+                                <th>Live Points</th>
+                                <th style="text-align: center;">Next / Max Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="no-data"><td class="rank-col">1</td><td class="player-col">—</td><td class="event-col">0</td><td class="event-col">—</td><td class="points-col">0</td><td class="event-col">—</td></tr>
+                        <tr class="no-data"><td class="rank-col">2</td><td class="player-col">—</td><td class="event-col">0</td><td class="event-col">—</td><td class="points-col">0</td><td class="event-col">—</td></tr>
+                        <tr class="no-data"><td class="rank-col">3</td><td class="player-col">—</td><td class="event-col">0</td><td class="event-col">—</td><td class="points-col">0</td><td class="event-col">—</td></tr>
+                        <tr class="no-data"><td class="rank-col">4</td><td class="player-col">—</td><td class="event-col">0</td><td class="event-col">—</td><td class="points-col">0</td><td class="event-col">—</td></tr>
+                        <tr class="no-data"><td class="rank-col">5</td><td class="player-col">—</td><td class="event-col">0</td><td class="event-col">—</td><td class="points-col">0</td><td class="event-col">—</td></tr>
+                        <tr class="no-data"><td class="rank-col">6</td><td class="player-col">—</td><td class="event-col">0</td><td class="event-col">—</td><td class="points-col">0</td><td class="event-col">—</td></tr>
+                        <tr class="no-data"><td class="rank-col">7</td><td class="player-col">—</td><td class="event-col">0</td><td class="event-col">—</td><td class="points-col">0</td><td class="event-col">—</td></tr>
+                        <tr class="no-data"><td class="rank-col">8</td><td class="player-col">—</td><td class="event-col">0</td><td class="event-col">—</td><td class="points-col">0</td><td class="event-col">—</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3 class="region-heading">📍 North London Circuit (2027 Standings)</h3>
+                <div class="table-container">
+                    <table class="race-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">Rank</th>
+                                <th>Player</th>
+                                <th style="text-align: center;">Tournaments Played</th>
+                                <th style="text-align: center;">Current Event</th>
+                                <th>Live Points</th>
+                                <th style="text-align: center;">Next / Max Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td class="rank-col">1</td><td class="player-col">Antonio Agresta</td><td class="event-col">1</td><td class="event-col">—</td><td class="points-col">10</td><td class="event-col">—</td></tr>
+                        <tr><td class="rank-col">2</td><td class="player-col">Belal Bareets</td><td class="event-col">1</td><td class="event-col">—</td><td class="points-col">10</td><td class="event-col">—</td></tr>
+                        <tr><td class="rank-col">3</td><td class="player-col">James Ward</td><td class="event-col">1</td><td class="event-col">—</td><td class="points-col">10</td><td class="event-col">—</td></tr>
+                        <tr><td class="rank-col">4</td><td class="player-col">Joe Popiolek</td><td class="event-col">1</td><td class="event-col">—</td><td class="points-col">10</td><td class="event-col">—</td></tr>
+                        <tr><td class="rank-col">5</td><td class="player-col">Mohit Poddar</td><td class="event-col">1</td><td class="event-col">—</td><td class="points-col">10</td><td class="event-col">—</td></tr>
+                        <tr><td class="rank-col">6</td><td class="player-col">Piero Grassi</td><td class="event-col">1</td><td class="event-col">—</td><td class="points-col">10</td><td class="event-col">—</td></tr>
+                        <tr><td class="rank-col">7</td><td class="player-col">Ray Wongy</td><td class="event-col">1</td><td class="event-col">—</td><td class="points-col">10</td><td class="event-col">—</td></tr>
+                        <tr><td class="rank-col">8</td><td class="player-col">Takudzwa Pfupa</td><td class="event-col">1</td><td class="event-col">—</td><td class="points-col">10</td><td class="event-col">—</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="year-panel active" data-year="2026">
+                <h3 class="region-heading">📍 Hertfordshire Circuit (2026 Standings)</h3>
+                <div class="table-container">
+                    <table class="race-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">Rank</th>
+                                <th>Player</th>
+                                <th style="text-align: center;">Tournaments Played</th>
+                                <th style="text-align: center;">Current Event</th>
+                                <th>Live Points</th>
+                                <th style="text-align: center;">Next / Max Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td class="rank-col">1</td><td class="player-col">Tim Ho</td><td class="event-col">2</td><td class="event-col"><div class="event-list">Tennis Nerds Autumn Showdown</div></td><td class="points-col">225</td><td class="event-col">245 / 285</td></tr>
+                        <tr><td class="rank-col">2</td><td class="player-col">Malachi Lalite</td><td class="event-col">2</td><td class="event-col"><div class="event-list">Tennis Nerds Autumn Showdown</div></td><td class="points-col">175</td><td class="event-col">195 / 215</td></tr>
+                        <tr><td class="rank-col">3</td><td class="player-col">Christopher Gorczewski</td><td class="event-col">3</td><td class="event-col"><div class="event-list">DTC Box League<br>Tennis Nerds Autumn Showdown</div></td><td class="points-col">160</td><td class="event-col">190 / 330</td></tr>
+                        <tr><td class="rank-col">4</td><td class="player-col">Andrew Winstone</td><td class="event-col">1</td><td class="event-col">—</td><td class="points-col">115</td><td class="event-col">—</td></tr>
+                        <tr><td class="rank-col">5</td><td class="player-col">Henry Bennett</td><td class="event-col">2</td><td class="event-col"><div class="event-list">Tennis Nerds Autumn Showdown</div></td><td class="points-col">115</td><td class="event-col">135 / 155</td></tr>
+                        <tr><td class="rank-col">6</td><td class="player-col">Kristof Peto</td><td class="event-col">1</td><td class="event-col">—</td><td class="points-col">105</td><td class="event-col">—</td></tr>
+                        <tr><td class="rank-col">7</td><td class="player-col">Benn Antcliff</td><td class="event-col">2</td><td class="event-col"><div class="event-list">Tennis Nerds Autumn Showdown</div></td><td class="points-col">105</td><td class="event-col">125 / 145</td></tr>
+                        <tr><td class="rank-col">8</td><td class="player-col">Tariq Hassan</td><td class="event-col">3</td><td class="event-col"><div class="event-list">DTC Box League<br>Tennis Nerds Autumn Showdown</div></td><td class="points-col">90</td><td class="event-col">120 / 180</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h3 class="region-heading">📍 North London Circuit (2026 Standings)</h3>
+                <div class="table-container">
+                    <table class="race-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">Rank</th>
+                                <th>Player</th>
+                                <th style="text-align: center;">Tournaments Played</th>
+                                <th style="text-align: center;">Current Event</th>
+                                <th>Live Points</th>
+                                <th style="text-align: center;">Next / Max Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr><td class="rank-col">1</td><td class="player-col">Lavender Tang</td><td class="event-col">1</td><td class="event-col">—</td><td class="points-col">5</td><td class="event-col">—</td></tr>
+                        <tr><td class="rank-col">2</td><td class="player-col">Piero Grassi</td><td class="event-col">1</td><td class="event-col">—</td><td class="points-col">5</td><td class="event-col">—</td></tr>
+                        <tr><td class="rank-col">3</td><td class="player-col">Ray Wongy</td><td class="event-col">1</td><td class="event-col">—</td><td class="points-col">5</td><td class="event-col">—</td></tr>
+                        <tr><td class="rank-col">4</td><td class="player-col">Tariq Hassan</td><td class="event-col">1</td><td class="event-col">—</td><td class="points-col">5</td><td class="event-col">—</td></tr>
+                        <tr class="no-data"><td class="rank-col">5</td><td class="player-col">—</td><td class="event-col">0</td><td class="event-col">—</td><td class="points-col">0</td><td class="event-col">—</td></tr>
+                        <tr class="no-data"><td class="rank-col">6</td><td class="player-col">—</td><td class="event-col">0</td><td class="event-col">—</td><td class="points-col">0</td><td class="event-col">—</td></tr>
+                        <tr class="no-data"><td class="rank-col">7</td><td class="player-col">—</td><td class="event-col">0</td><td class="event-col">—</td><td class="points-col">0</td><td class="event-col">—</td></tr>
+                        <tr class="no-data"><td class="rank-col">8</td><td class="player-col">—</td><td class="event-col">0</td><td class="event-col">—</td><td class="points-col">0</td><td class="event-col">—</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- NERDS_RACE_END -->
+
+            <!-- Race Regulations & Points Allocation -->
+            <h3 style="margin-top: 40px;">Race Points</h3>
+            <div class="rules-grid">
+                <!-- Points Distribution Section -->
+                <div class="info-section">
+                    <h4>How Points Are Allocated</h4>
+                    <ul>
+                        <li><strong>Tournament Champion:</strong> 100 Points</li>
+                        <li><strong>Tournament Runner-Up:</strong> 80 Points</li>
+                        <li><strong>Semi-Finalists:</strong> 60 Points</li>
+                        <li><strong>Quarter-Finalists:</strong> 40 Points</li>
+                        <li><strong>Round of 16 / Group Stage Wins:</strong> 20 Points</li>
+                        <li><strong>Tournament Appearance / Round of 32+:</strong> 10 Points</li>
+                    </ul>
+
+                    <p style="margin-top: 15px; font-size: 0.9em; color: #555; line-height: 1.5; border-top: 1px dashed #ddd; padding-top: 10px;">
+                        <strong>💡 LTA Grade Multipliers:</strong> Standard points apply to <strong>Grade 6</strong> open events (1.0x). Points for <strong>Grade 7</strong> or box leagues are calculated at <strong>0.5x</strong>.
+                    </p>
+                </div>
+
+                <!-- Nerds Race Champion Section -->
+                <div class="info-section">
+                    <h4>The Nerds Race Champion</h4>
+                    <p style="line-height: 1.6; color: #444;">
+                        There is no separate finals event. The season ends with the <strong>Autumn Showdown</strong>, and once it is complete the player leading each regional table is crowned <strong>Nerds Race Champion</strong> for that region.
+                    </p>
+                    <p style="line-height: 1.6; color: #444; margin-top: 10px;">
+                        Every match you play across the season counts towards your total, so the title is decided purely by the Nerds Race leaderboard, rewarding year-long commitment and consistency.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Tie-Breaker Rule Banner -->
+            <div class="golden-rule">
+                <strong>🛡 The Tie-Breaker Rule:</strong> If players sit tied on total points at the conclusion of the Autumn Showdown, the individual with the highest aggregate match-win percentage throughout the year is ranked higher, and takes the Nerds Race Champion title if the tie is at the top.
+            </div>
+
+        </main>
+
+        <div id="footer-placeholder"></div>
+    </div>
+
+    <script src="js/scripts.js"></script>
+    <script>
+        (function () {
+            var tabs = document.querySelectorAll('.year-tab');
+            var panels = document.querySelectorAll('.year-panel');
+            function show(year) {
+                tabs.forEach(function (t) { t.classList.toggle('active', t.dataset.year === year); });
+                panels.forEach(function (p) { p.classList.toggle('active', p.dataset.year === year); });
+            }
+            tabs.forEach(function (t) {
+                t.addEventListener('click', function () {
+                    show(t.dataset.year);
+                    history.replaceState(null, '', '#' + t.dataset.year);
+                });
+            });
+            var wanted = location.hash.replace('#', '');
+            if (wanted && document.querySelector('.year-tab[data-year="' + wanted + '"]')) { show(wanted); }
+        })();
+    </script>
+</body>
+</html>
