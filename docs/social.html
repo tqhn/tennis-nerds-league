@@ -54,6 +54,18 @@
         font-size: 0.9em;
         white-space: nowrap;
     }
+    /* Past events: same look, softer, not clickable */
+    .past-card {
+        cursor: default;
+        background: #fafafa;
+        border-color: #d9e3d3;
+    }
+    .past-card:hover { border-color: #d9e3d3; background-color: #fafafa; }
+    .past-card .card-right { max-width: 45%; }
+    .past-names { font-size: 0.8em; color: #666; line-height: 1.4; }
+    /* Regular weekly sessions: fixed, not bookable */
+    .regular-card { cursor: default; }
+    .regular-card:hover { border-color: var(--color-primary-accent); background-color: var(--color-white); }
         #form-section { display: none; margin-top: 30px; padding: 20px; background: var(--color-light-bg); border-radius: 8px; }
         input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
     </style>
@@ -79,12 +91,39 @@
                 <input type="text" name="name" required placeholder="Name">
                 <label>Email Address</label>
                 <input type="email" name="email" required placeholder="abc@gmail.org">
+
+                <label style="display:flex; gap:8px; align-items:flex-start; font-size:0.85em; margin:6px 0;">
+                    <input type="checkbox" name="hideName" value="yes" style="width:auto; margin:3px 0 0 0;">
+                    <span>Don't show my first name on the public event list (optional)</span>
+                </label>
+
                 <button type="submit" class="cta-button primary" style="width:100%; border:none; margin-top:10px; cursor:pointer;">
                     Confirm My Spot
                 </button>
             </form>
+            <p style="font-size:0.8em; color:#666; margin:10px 0 0 0; text-align:center;">
+                We use your name and email to manage this RSVP. Your first name may appear on the public event list unless you tick the box above.
+                See our <a href="privacy_policy.html" target="_blank">privacy policy</a>.
+            </p>
             <p id="status" style="text-align:center; font-weight:bold; margin-top:15px;"></p>
         </div>
+
+        <section id="regular-section" style="margin-top:40px;">
+            <h2 style="margin-bottom: 5px;">Regular Sessions</h2>
+            <p style="text-align: center; margin-top: 0; margin-bottom: 20px; font-size: 0.9em; color: #666;">
+                Weekly games, arranged in WhatsApp. No booking needed.
+            </p>
+            <div id="regular-list" class="session-list"></div>
+        </section>
+
+        <section id="past-section" style="display:none; margin-top:40px;">
+            <h2 style="margin-bottom: 5px;">Past Events</h2>
+            <div id="past-list" class="session-list"></div>
+            <button id="past-more" type="button" class="cta-button primary"
+                    style="display:none; margin: 0 auto; border:none; cursor:pointer;">
+                Show more
+            </button>
+        </section>
         
     </main>
         
@@ -96,64 +135,193 @@
 
 <script>
     const API = "https://script.google.com/macros/s/AKfycbyFKVI7nPYLqD8wj0Hjg1rlMeUhGWSE2ap8Xo4fqd7IeUFyl72zeNELpQq1RjzsYbWB/exec";
+    const PAST_VISIBLE = 6;   // how many past events show before "Show more"
 
-    fetch(API)
+    // ---------- helpers ----------
+    function escapeHtml(s) {
+        return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+    }
+
+    // Public lists only ever show a first name, and names are escaped because they come from the RSVP form.
+    function firstName(n) {
+        return String(n || "").trim().split(/\s+/)[0];
+    }
+
+    function cleanNames(ev) {
+        if (!Array.isArray(ev.attendees)) return [];
+        return ev.attendees.map(firstName).filter(Boolean).map(escapeHtml);
+    }
+
+    function formatEventDate(ev) {
+        const d = new Date(ev.date);
+        return isNaN(d) ? ev.date : d.toLocaleDateString('en-GB', {
+            weekday: 'short',
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric'
+        });
+    }
+
+    function goingText(ev) {
+        const count = Number(ev.attendeeCount) || 0;
+        if (count <= 0) return '<span style="color:#aaa;">Be first!</span>';
+        const names = cleanNames(ev);
+        if (names.length === 0) return `🎾 ${count} going`;
+        const more = count - names.length;
+        return `🎾 ${names.join(', ')}${more > 0 ? ` +${more}` : ''} going`;
+    }
+
+    // ---------- cards ----------
+    function buildUpcomingCard(ev) {
+        const card = document.createElement('div');
+        card.className = 'booking-card';
+
+        card.innerHTML = `
+            <div class="card-top">
+                <h4 class="card-title">${ev.title}</h4>
+                <div class="card-right">
+                    <div class="spots-label">
+                        ${ev.remaining > 0 ? ev.remaining + ' Spots Left' : 'Join Waitlist'}
+                    </div>
+                    <div class="card-attendees">${goingText(ev)}</div>
+                </div>
+            </div>
+            <div class="card-meta">📅 ${formatEventDate(ev)} | ⏰ ${ev.time || 'TBA'}</div>
+            <div class="card-meta" style="margin-top:3px;">📍 ${ev.location || 'TBA'}</div>
+            ${ev.description ? `<p style="margin:6px 0 0 0; font-size:0.82em; color:#555;">${ev.description}</p>` : ''}
+        `;
+
+        card.onclick = () => {
+            document.querySelectorAll('.booking-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            document.getElementById('hiddenEventId').value = ev.id;
+            document.getElementById('form-section').style.display = 'block';
+            document.getElementById('form-section').scrollIntoView({behavior: 'smooth'});
+        };
+        return card;
+    }
+
+    function buildPastCard(ev) {
+        const card = document.createElement('div');
+        card.className = 'booking-card past-card';
+
+        const count = Number(ev.attendeeCount) || 0;
+        const names = cleanNames(ev);
+        const more = count - names.length;
+
+        // Names go on the right. If everyone has asked to be hidden, fall back to a simple count.
+        let rightHtml = '';
+        if (names.length > 0) {
+            rightHtml = `🎾 ${names.join(', ')}${more > 0 ? ` +${more} more` : ''}`;
+        } else if (count > 0) {
+            rightHtml = `🎾 ${count} joined`;
+        }
+
+        card.innerHTML = `
+            <div class="card-top">
+                <h4 class="card-title">${ev.title}</h4>
+                <div class="card-right past-names">${rightHtml}</div>
+            </div>
+            <div class="card-meta">📅 ${formatEventDate(ev)}${ev.time ? ' | ⏰ ' + ev.time : ''}</div>
+            <div class="card-meta" style="margin-top:3px;">📍 ${ev.location || ''}</div>
+            ${ev.description ? `<p style="margin:6px 0 0 0; font-size:0.82em; color:#555;">${ev.description}</p>` : ''}
+        `;
+        return card;
+    }
+
+    function renderPast(past) {
+        const section = document.getElementById('past-section');
+        const pastList = document.getElementById('past-list');
+        if (past.length === 0) { section.style.display = 'none'; return; }
+
+        section.style.display = 'block';
+        pastList.innerHTML = '';
+        past.forEach((ev, i) => {
+            const card = buildPastCard(ev);
+            if (i >= PAST_VISIBLE) card.style.display = 'none';
+            pastList.appendChild(card);
+        });
+
+        if (past.length > PAST_VISIBLE) {
+            const btn = document.getElementById('past-more');
+            btn.style.display = 'block';
+            btn.onclick = () => {
+                pastList.querySelectorAll('.past-card').forEach(c => { c.style.display = ''; });
+                btn.style.display = 'none';
+            };
+        }
+    }
+
+    // ---------- regular sessions ----------
+    // Fixed weekly sessions. Not bookable: games are arranged in the WhatsApp group. Add more entries here.
+    const REGULAR_SESSIONS = [
+        {
+            title: "Grinders' Sunday Tennis | Mixed Doubles | Level: Inter./Adv. (WTN <30)",
+            when: "Weekends",
+            time: "TBC",
+            location: "Shephalbury Park Tennis, Stevenage",
+            description: "Games are arranged in our WhatsApp group, so there's nothing to book. Join the group and say you're in.",
+            ctaText: "Join the WhatsApp group",
+            ctaLink: "join.html"
+        },
+        {
+            title: "Sunday Social Tennis | Mixed Doubles | Level: Beginners/Improvers",
+            when: "Weekends",
+            time: "TBC",
+            location: "Shephalbury Park Tennis, Stevenage",
+            description: "Games are arranged in our WhatsApp group, so there's nothing to book. Join the group and say you're in.",
+            ctaText: "Join the WhatsApp group",
+            ctaLink: "join.html"
+        }
+    ];
+
+    function renderRegular() {
+        const section = document.getElementById('regular-section');
+        const list = document.getElementById('regular-list');
+        if (REGULAR_SESSIONS.length === 0) { section.style.display = 'none'; return; }
+
+        REGULAR_SESSIONS.forEach(s => {
+            const card = document.createElement('div');
+            card.className = 'booking-card regular-card';
+            card.innerHTML = `
+                <div class="card-top">
+                    <h4 class="card-title">${s.title}</h4>
+                    <div class="card-right"><div class="spots-label">${s.when}</div></div>
+                </div>
+                <div class="card-meta">⏰ ${s.time}</div>
+                <div class="card-meta" style="margin-top:3px;">📍 ${s.location}</div>
+                <p style="margin:6px 0 10px 0; font-size:0.82em; color:#555;">${s.description}</p>
+                <a href="${s.ctaLink}" class="cta-button primary"
+                   style="display:inline-block; font-size:0.85em; padding:8px 16px; text-decoration:none;">${s.ctaText}</a>
+            `;
+            list.appendChild(card);
+        });
+    }
+    renderRegular();
+
+    // ---------- load ----------
+    fetch(API + "?include=past")
         .then(res => res.json())
         .then(data => {
             const list = document.getElementById('session-list');
             list.innerHTML = '';
 
-            // --- SORTING LOGIC ---
-            // This sorts the data by the date property before showing it
-            data.sort((a, b) => new Date(a.date) - new Date(b.date));
+            const todayStart = new Date();
+            todayStart.setHours(0, 0, 0, 0);
+            const isPast = ev => { const d = new Date(ev.date); return !isNaN(d) && d < todayStart; };
 
-            if (data.length === 0) {
-                list.innerHTML = "<p>No active sessions found.</p>";
-                return;
+            // Upcoming: soonest first. Past: most recent first.
+            const upcoming = data.filter(ev => !isPast(ev)).sort((a, b) => new Date(a.date) - new Date(b.date));
+            const past = data.filter(isPast).sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            if (upcoming.length === 0) {
+                list.innerHTML = "<p style='text-align:center;'>No one-off events scheduled right now. See our regular sessions below.</p>";
             }
+            upcoming.forEach(ev => list.appendChild(buildUpcomingCard(ev)));
 
-            data.forEach(ev => {
-                const card = document.createElement('div');
-                card.className = 'booking-card';
-                
-                // Better Date Formatting
-                const d = new Date(ev.date);
-                const eventDate = isNaN(d) ? ev.date : d.toLocaleDateString('en-GB', { 
-                    weekday: 'short', // Adds "Mon", "Tue", etc.
-                    day: '2-digit', 
-                    month: 'short',
-                    year: 'numeric' 
-                });
-
-
-                card.innerHTML = `
-                    <div class="card-top">
-                        <h4 class="card-title">${ev.title}</h4>
-                        <div class="card-right">
-                            <div class="spots-label">
-                                ${ev.remaining > 0 ? ev.remaining + ' Spots Left' : 'Join Waitlist'}
-                            </div>
-                            <div class="card-attendees">
-                                ${ev.attendeeCount > 0 
-                                    ? `🎾 ${ev.attendees.join(', ')}${ev.attendeeCount > 5 ? ` +${ev.attendeeCount - 5}` : ''} going`
-                                    : '<span style="color:#aaa;">Be first!</span>'}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-meta">📅 ${eventDate} | ⏰ ${ev.time || 'TBA'}</div>
-                    <div class="card-meta" style="margin-top:3px;">📍 ${ev.location || 'TBA'}</div>
-                    ${ev.description ? `<p style="margin:6px 0 0 0; font-size:0.82em; color:#555;">${ev.description}</p>` : ''}
-                `;
-                
-                card.onclick = () => {
-                    document.querySelectorAll('.booking-card').forEach(c => c.classList.remove('selected'));
-                    card.classList.add('selected');
-                    document.getElementById('hiddenEventId').value = ev.id;
-                    document.getElementById('form-section').style.display = 'block';
-                    document.getElementById('form-section').scrollIntoView({behavior: 'smooth'});
-                };
-                list.appendChild(card);
-            });
+            renderPast(past);
         })
         .catch(err => {
             document.getElementById('session-list').innerHTML = "Error loading sessions.";
